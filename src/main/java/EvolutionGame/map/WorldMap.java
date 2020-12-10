@@ -17,6 +17,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
     private final List<Plant> eatenPlants;
     private final Integer animalStartingEnergy;
     private int currentNumberOfAnimals;
+    private int currentNumberOfPlants;
     private Queue<Vector2d> freeJunglePlants;
     private Queue<Vector2d> freeSteppesPlants;
     private final int plantsSpawnRatio;
@@ -32,6 +33,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.animals = new LinkedHashMap<>();
         this.animalStartingEnergy = animalStartingEnergy;
         this.currentNumberOfAnimals = 0;
+        this.currentNumberOfPlants = 0;
         List<Vector2d> temp = new ArrayList<>(jungleBounds.opposite().square(jungleBounds));
         Collections.shuffle(temp);
         this.freeJunglePlants = new LinkedList<>(temp);
@@ -49,8 +51,12 @@ public class WorldMap implements IWorldMap, IElementObserver {
         return currentNumberOfAnimals;
     }
 
-    public Map<Vector2d, Plant> getPlants() {
-        return this.plants;
+    Map<Vector2d, Plant> getPlants() {
+        return Collections.unmodifiableMap(this.plants);
+    }
+
+    public int getCurrentNumberOfPlants() {
+        return this.currentNumberOfPlants;
     }
 
     public Integer getAnimalStartingEnergy() {
@@ -74,6 +80,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     public void addPlants() {
+        currentNumberOfPlants += 2;
         List<Vector2d> temp = new ArrayList<>(this.freeJunglePlants);
         Collections.shuffle(temp);
         this.freeJunglePlants = new LinkedList<>(temp);
@@ -157,6 +164,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
 
     public void eatPlants() {
         for (Plant plant : eatenPlants) {
+            currentNumberOfPlants--;
             eatPlant(plant, animals.get(plant.getPosition()));
             if (isInJungle(plant.getPosition()))
                 freeJunglePlants.add(plant.getPosition());
@@ -219,7 +227,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
             animals.remove(position);
     }
 
-    private void removePlant(Plant plant){
+    private void removePlant(Plant plant) {
         plants.remove(plant.getPosition());
     }
 

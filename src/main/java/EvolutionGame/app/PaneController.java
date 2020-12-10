@@ -1,5 +1,6 @@
 package EvolutionGame.app;
 
+import EvolutionGame.App;
 import EvolutionGame.simulation.SimulationEngine;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -8,6 +9,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class PaneController extends TextField {
 
@@ -51,14 +54,20 @@ public class PaneController extends TextField {
     }
 
     @FXML
-    public void onActionButton1() {
+    private void start() throws IOException {
+        App.setRoot("Map");
+    }
+
+    @FXML
+    public void onActionButton1() throws IOException {
+        start();
         create();
         new Thread(() -> {
             while (true){
                 try {
                     if (engine1Running){
                         engine1.simulateAYear();
-                        System.out.println("1 running");
+//                        System.out.println("1 running");
                     }
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -67,7 +76,7 @@ public class PaneController extends TextField {
                 try {
                     if (engine2Running){
                         engine2.simulateAYear();
-                        System.out.println("2 running");
+//                        System.out.println("2 running");
                     }
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -77,14 +86,17 @@ public class PaneController extends TextField {
         }).start();
     }
 
+    @FXML
     public void pause1() {
         new Thread(() -> engine1Running = !engine1Running).start();
     }
 
+    @FXML
     public void pause2() {
         new Thread(() -> engine2Running = !engine2Running).start();
     }
 
+    @FXML
     private void create() {
         engine1 = new SimulationEngine(Integer.parseInt(
                 width.getText()),

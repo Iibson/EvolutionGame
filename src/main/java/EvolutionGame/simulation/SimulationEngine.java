@@ -29,6 +29,7 @@ public class SimulationEngine {
     }
 
     public void simulateAYear() {
+        System.out.println(this.year + " " + this.world.getCurrentNumberOfAnimals() + " " + this.world.getCurrentNumberOfPlants());
         world.spentYear();
         this.year++;
     }

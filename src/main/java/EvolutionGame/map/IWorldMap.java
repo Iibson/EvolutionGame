@@ -10,7 +10,7 @@ public interface IWorldMap {
 
     void place(Animal animal);
 
-    Map<Vector2d, Plant> getPlants();
+    //    Map<Vector2d, Plant> getPlants();
 //
 //    Vector2d getJungleBounds();
 //
@@ -18,8 +18,9 @@ public interface IWorldMap {
 //
     Integer getAnimalStartingEnergy();
 
-
     int getCurrentNumberOfAnimals();
+
+    int getCurrentNumberOfPlants();
 
     void addPlants();
 
