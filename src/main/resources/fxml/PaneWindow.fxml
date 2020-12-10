@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+      prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="EvolutionGame.app.PaneController">
+    <TextField fx:id="width" layoutX="131.0" layoutY="10.0" promptText="20" text="20"/>
+    <Label layoutX="58.0" layoutY="14.0" text="Width"/>
+    <Label layoutX="41.0" layoutY="152.0" text="Start Energy"/>
+    <Label layoutX="34.0" layoutY="122.0" text="Jungle Height"/>
+    <Label layoutX="56.0" layoutY="49.0" text="Height"/>
+    <Label layoutX="39.0" layoutY="85.0" text="Jungle Width"/>
+    <Label layoutX="38.0" layoutY="183.0" text="Move Energy"/>
+    <Label layoutX="39.0" layoutY="216.0" text="Plant Energy"/>
+    <TextField fx:id="height" layoutX="131.0" layoutY="45.0" promptText="20" text="20"/>
+    <TextField fx:id="jungleWidth" layoutX="131.0" layoutY="81.0" promptText="6" text="6"/>
+    <TextField fx:id="plantEnergy" layoutX="131.0" layoutY="212.0" promptText="10" text="10"/>
+    <TextField fx:id="startEnergy" layoutX="131.0" layoutY="148.0" promptText="20" text="20"/>
+    <TextField fx:id="jungleHeight" layoutX="131.0" layoutY="118.0" promptText="6" text="6"/>
+    <TextField fx:id="moveEnergy" layoutX="131.0" layoutY="179.0" promptText="1" text="1"/>
+    <Button fx:id="button" layoutX="38.0" layoutY="319.0" mnemonicParsing="false" onAction="#onActionButton1"
+            prefHeight="25.0" prefWidth="66.0" text="Start"/>
+    <Label layoutX="26.0" layoutY="250.0" text="Plant Spawn Ratio"/>
+    <Label layoutX="29.0" layoutY="277.0" text="Starting Animals"/>
+    <TextField fx:id="startingAnimals" layoutX="131.0" layoutY="282.0" promptText="20" text="20"/>
+    <TextField fx:id="plantSpawnRatio" layoutX="131.0" layoutY="246.0" promptText="2" text="2"/>
+    <Button fx:id="pauseButton1" layoutX="45.0" layoutY="364.0" mnemonicParsing="false" onAction="#pause1"
+            text="Pause1"/>
+    <Button fx:id="pauseButton2" layoutX="137.0" layoutY="364.0" mnemonicParsing="false" onAction="#pause2"
+            text="Pause2"/>
+</Pane>

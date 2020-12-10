@@ -3,7 +3,6 @@ package EvolutionGame.mapElement.animal;
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.data.MapDirection;
 import EvolutionGame.map.WorldMap;
-import EvolutionGame.mapElement.animal.Animal;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +13,7 @@ import java.util.Random;
 
 public class AnimalTest {
     private Random random = new Random();
-    private WorldMap testMap = new WorldMap(0, 0, 0, 0, 0, 10, 2);
+    private WorldMap testMap = new WorldMap(0, 0, 0, 0, 0, 10, 2, 1);
     private List<Integer> temp = new ArrayList<>();
 
     @Test

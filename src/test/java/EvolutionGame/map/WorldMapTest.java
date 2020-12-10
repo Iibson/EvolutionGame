@@ -2,7 +2,6 @@ package EvolutionGame.map;
 
 import EvolutionGame.data.MapDirection;
 import EvolutionGame.data.Vector2d;
-import EvolutionGame.mapElement.IMapElement;
 import EvolutionGame.mapElement.animal.Animal;
 import EvolutionGame.mapElement.plant.Plant;
 import org.junit.Assert;
@@ -14,7 +13,7 @@ import java.util.Random;
 
 public class WorldMapTest {
 
-    private WorldMap map = new WorldMap(12, 12, 10, 10, 9, 10, 1);
+    private WorldMap map = new WorldMap(12, 12, 10, 10, 9, 10, 1, 1);
     private Random random = new Random();
 
     @Test
@@ -59,9 +58,7 @@ public class WorldMapTest {
         Animal animal = new Animal(map, tempPlant.getPosition().subtract(new Vector2d(0, 1)), MapDirection.NORTH, genes, 10);
         Animal animal1 = new Animal(map, tempPlant.getPosition().subtract(new Vector2d(0, 1)), MapDirection.NORTH, genes, 5);
         Animal animal2 = new Animal(map, tempPlant.getPosition().subtract(new Vector2d(0, 1)), MapDirection.NORTH, genes, 10);
-        animal.move();
-        animal1.move();
-        animal2.move();
+        map.moveAnimals();
         map.eatPlants();
         Assert.assertEquals(13, (int) animal.getEnergy());
         Assert.assertEquals(4, (int) animal1.getEnergy());
@@ -119,7 +116,7 @@ public class WorldMapTest {
         List<Integer> genes = new ArrayList<>();
         for (int i = 0; i < 32; i++)
             genes.add(0);
-        WorldMap map = new WorldMap(6, 6, 0, 0, 9, 10, 2);
+        WorldMap map = new WorldMap(6, 6, 0, 0, 9, 10, 2, 1);
         Animal animal = new Animal(map, new Vector2d(2, 2), MapDirection.NORTH, genes, 10);
         animal.move();
         animal.move();

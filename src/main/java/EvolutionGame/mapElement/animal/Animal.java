@@ -4,11 +4,10 @@ import EvolutionGame.data.Vector2d;
 import EvolutionGame.map.IElementObserver;
 import EvolutionGame.map.IWorldMap;
 import EvolutionGame.data.MapDirection;
-import EvolutionGame.mapElement.IMapElement;
 
 import java.util.*;
 
-public class Animal implements IMapElement { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/mapie chodzi o to aby w setach animale nie znikały
+public class Animal{ //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/mapie chodzi o to aby w setach animale nie znikały
     private MapDirection mapDirection;
     private Vector2d position;
     private final IWorldMap map;
@@ -29,12 +28,11 @@ public class Animal implements IMapElement { //TODO dodaj id i sprawdzaj powtork
         map.place(this);
     }
 
-    @Override
     public Vector2d getPosition() {
         return this.position;
     }
 
-    public MapDirection getMapDirection() {
+    private MapDirection getMapDirection() {
         return this.mapDirection;
     }
 
@@ -52,7 +50,7 @@ public class Animal implements IMapElement { //TODO dodaj id i sprawdzaj powtork
     }
 
     public void move() {
-        if (energy == 0) {
+        if (energy < 0) {
             removedFromMap();
             return;
         }
@@ -60,11 +58,10 @@ public class Animal implements IMapElement { //TODO dodaj id i sprawdzaj powtork
         Vector2d oldPosition = this.position;
         position = checkBounds(position.add(mapDirection.toUnitVector()));
         positionChanged(oldPosition);
-        subtractEnergy();
     }
 
-    private void subtractEnergy() {
-        energy -= 1;
+    public void subtractEnergy(Integer energy) {
+        this.energy -= energy;
     }
 
     public List<Integer> getGenes() {

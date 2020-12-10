@@ -2,7 +2,6 @@ package EvolutionGame.map;
 
 import EvolutionGame.data.Vector2d;
 import javafx.util.Pair;
-import EvolutionGame.mapElement.IMapElement;
 import EvolutionGame.mapElement.animal.Animal;
 import EvolutionGame.mapElement.plant.Plant;
 
@@ -21,8 +20,10 @@ public class WorldMap implements IWorldMap, IElementObserver {
     private Queue<Vector2d> freeJunglePlants;
     private Queue<Vector2d> freeSteppesPlants;
     private final int plantsSpawnRatio;
+    private final Integer moveEnergy;
 
-    public WorldMap(int width, int height, int jungleWidth, int jungleHeight, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio) {
+    public WorldMap(int width, int height, int jungleWidth, int jungleHeight, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio, Integer moveEnergy) {
+        this.moveEnergy = moveEnergy;
         this.mapBounds = new Vector2d((width / 2), (height / 2));
         this.plantEnergy = plantEnergy;
         this.jungleBounds = new Vector2d((jungleWidth / 2), (jungleHeight / 2));
@@ -40,11 +41,15 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.plantsSpawnRatio = plantsSpawnRatio;
     }
 
+    public Integer getMoveEnergy() {
+        return moveEnergy;
+    }
+
     public int getCurrentNumberOfAnimals() {
         return currentNumberOfAnimals;
     }
 
-    Map<Vector2d, Plant> getPlants() {
+    public Map<Vector2d, Plant> getPlants() {
         return this.plants;
     }
 
@@ -92,7 +97,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         if (freeSteppesPlants.size() == 0)
             return;
         Vector2d v = freeSteppesPlants.poll();
-        for(int i = 0; i < freeSteppesPlants.size() && !(animals.get(v) == null); i++){
+        for (int i = 0; i < freeSteppesPlants.size() && !(animals.get(v) == null); i++) {
             freeSteppesPlants.add(v);
             v = freeSteppesPlants.poll();
         }
@@ -105,7 +110,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         if (freeJunglePlants.size() == 0)
             return;
         Vector2d v = freeJunglePlants.poll();
-        for(int i = 0; i < freeJunglePlants.size() && !(animals.get(v) == null); i++){
+        for (int i = 0; i < freeJunglePlants.size() && !(animals.get(v) == null); i++) {
             freeJunglePlants.add(v);
             v = freeJunglePlants.poll();
         }
@@ -118,7 +123,10 @@ public class WorldMap implements IWorldMap, IElementObserver {
         animals.values().stream()
                 .flatMap(Set::stream)
                 .collect(Collectors.toList())
-                .forEach(Animal::move);
+                .forEach(animal -> {
+                    animal.move();
+                    animal.subtractEnergy(this.moveEnergy);
+                });
     }
 
     public void positionChanged(Animal animal, Vector2d oldPosition) {
@@ -171,7 +179,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
             }
         }
         tempEaters.forEach(eater -> eater.addEnergy(plantEnergy / tempEaters.size()));
-        removedFromMap(plant.getPosition(), plant);
+        removePlant(plant);
     }
 
     public void reproduceAnimals() {
@@ -204,14 +212,15 @@ public class WorldMap implements IWorldMap, IElementObserver {
         potentialParents.forEach(pair -> pair.getKey().reproduce(pair.getValue()));
     }
 
-    public void removedFromMap(Vector2d position, IMapElement element) {
-        if (element.getClass() == Animal.class) {
-            animals.get(position).remove((Animal) element);
-            this.currentNumberOfAnimals--;
-            if (animals.get(position).isEmpty())
-                animals.remove(position);
-        } else
-            plants.remove(position);
+    public void removedFromMap(Vector2d position, Animal element) {
+        animals.get(position).remove(element);
+        this.currentNumberOfAnimals--;
+        if (animals.get(position).isEmpty())
+            animals.remove(position);
+    }
+
+    private void removePlant(Plant plant){
+        plants.remove(plant.getPosition());
     }
 
     public void spentYear() {

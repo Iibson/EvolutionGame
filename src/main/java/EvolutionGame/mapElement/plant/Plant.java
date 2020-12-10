@@ -2,13 +2,11 @@ package EvolutionGame.mapElement.plant;
 
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.map.IElementObserver;
-import EvolutionGame.mapElement.IMapElement;
-import EvolutionGame.mapElement.animal.Animal;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Plant implements IMapElement {
+public class Plant{
     private Vector2d position;
     private List<IElementObserver> observers;
     private boolean beingEaten;
@@ -35,7 +33,6 @@ public class Plant implements IMapElement {
         observers.remove(observer);
     }
 
-    @Override
     public Vector2d getPosition() {
         return this.position;
     }
