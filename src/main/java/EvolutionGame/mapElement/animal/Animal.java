@@ -7,12 +7,12 @@ import EvolutionGame.data.MapDirection;
 
 import java.util.*;
 
-public class Animal{ //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/mapie chodzi o to aby w setach animale nie znikały
+public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/mapie chodzi o to aby w setach animale nie znikały
     private MapDirection mapDirection;
     private Vector2d position;
     private final IWorldMap map;
     private final List<Integer> genes;
-    private IElementObserver observer;
+    private List<IElementObserver> observers;
     private final Random geneGenerator;
     private Integer energy;
 
@@ -20,7 +20,7 @@ public class Animal{ //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/ma
         this.map = map;
         this.position = position;
         this.mapDirection = mapDirection;
-        this.observer = null;
+        this.observers = new ArrayList<>();
         this.genes = genes;
         Collections.sort(this.genes);
         this.geneGenerator = new Random();
@@ -84,7 +84,7 @@ public class Animal{ //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/ma
         new Animal(this.map, this.position, this.mapDirection, generateOffspringGenes(mate), generateOffspringEnergy(mate));
     }
 
-    private Integer generateOffspringEnergy(Animal mate){
+    private Integer generateOffspringEnergy(Animal mate) {
         Integer offspringEnergy = this.energy / 4 + mate.getEnergy() / 4;
         this.energy = this.energy / 4 * 3;
         mate.setEnergy(mate.getEnergy() / 4 * 3);
@@ -138,23 +138,23 @@ public class Animal{ //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/ma
     }
 
     public void addObserver(IElementObserver observer) {
-        this.observer = observer;
+        observers.add(observer);
     }
 
     public void removeObserver(IElementObserver observer) {
-        this.observer = null;
+        observers.remove(observer);
     }
 
     private void positionChanged(Vector2d oldPosition) {
-        observer.positionChanged(this, oldPosition);
+        observers.forEach(observer -> observer.positionChanged(this, oldPosition));
     }
 
     private void removedFromMap() {
-        observer.removedFromMap(position, this);
+        observers.forEach(observer -> observer.removedFromMap(position, this));
     }
 
     private Vector2d checkBounds(Vector2d position) {
-        if (!observer.checkBounds(position))
+        if (!map.checkBounds(position))
             return position;
         return position.subtract(this.mapDirection.toUnitVector()).opposite();
     }

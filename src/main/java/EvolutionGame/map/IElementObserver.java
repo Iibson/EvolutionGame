@@ -2,6 +2,7 @@ package EvolutionGame.map;
 
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.mapElement.animal.Animal;
+import EvolutionGame.mapElement.plant.Plant;
 
 public interface IElementObserver {
 
@@ -9,5 +10,7 @@ public interface IElementObserver {
 
     void removedFromMap(Vector2d position, Animal element);
 
-    boolean checkBounds(Vector2d position);
+    void place(Animal animal);
+
+    void addPlant(Plant plant);
 }

@@ -4,8 +4,8 @@ package EvolutionGame.data;
 import java.util.*;
 
 public class Vector2d {
-    private final Integer x;
-    private final Integer y;
+    public final Integer x;
+    public final Integer y;
 
     public Vector2d(Integer x, Integer y) {
         this.x = x;

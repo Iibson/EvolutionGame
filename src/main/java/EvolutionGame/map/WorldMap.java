@@ -1,6 +1,7 @@
 package EvolutionGame.map;
 
 import EvolutionGame.data.Vector2d;
+import EvolutionGame.map.visualisation.Visualiser;
 import javafx.util.Pair;
 import EvolutionGame.mapElement.animal.Animal;
 import EvolutionGame.mapElement.plant.Plant;
@@ -22,12 +23,13 @@ public class WorldMap implements IWorldMap, IElementObserver {
     private Queue<Vector2d> freeSteppesPlants;
     private final int plantsSpawnRatio;
     private final Integer moveEnergy;
+    private final IElementObserver visualiser;
 
-    public WorldMap(int width, int height, int jungleWidth, int jungleHeight, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio, Integer moveEnergy) {
+    public WorldMap(Vector2d mapBounds, Vector2d jungleBounds, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio, Integer moveEnergy, IElementObserver visualiser) {
         this.moveEnergy = moveEnergy;
-        this.mapBounds = new Vector2d((width / 2), (height / 2));
+        this.mapBounds = mapBounds;
         this.plantEnergy = plantEnergy;
-        this.jungleBounds = new Vector2d((jungleWidth / 2), (jungleHeight / 2));
+        this.jungleBounds = jungleBounds;
         this.eatenPlants = new ArrayList<>();
         this.plants = new LinkedHashMap<>();
         this.animals = new LinkedHashMap<>();
@@ -41,6 +43,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         Collections.shuffle(temp);
         this.freeSteppesPlants = new LinkedList<>(temp);
         this.plantsSpawnRatio = plantsSpawnRatio;
+        this.visualiser = visualiser;
     }
 
     public Integer getMoveEnergy() {
@@ -76,17 +79,19 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     private boolean isInJungle(Vector2d position) {
-        return position.opposite().follows(jungleBounds.opposite()) && position.precedes(jungleBounds);
+        return position.follows(jungleBounds.opposite()) && position.precedes(jungleBounds);
     }
 
     public void addPlants() {
         currentNumberOfPlants += 2;
         List<Vector2d> temp = new ArrayList<>(this.freeJunglePlants);
         Collections.shuffle(temp);
-        this.freeJunglePlants = new LinkedList<>(temp);
+        if(this.freeJunglePlants.size() != 0)
+            this.freeJunglePlants = new LinkedList<>(temp);
         temp = new ArrayList<>(this.freeSteppesPlants);
         Collections.shuffle(temp);
-        this.freeSteppesPlants = new LinkedList<>(temp);
+        if(this.freeSteppesPlants.size() != 0)
+            this.freeSteppesPlants = new LinkedList<>(temp);
         addPlantsToJungle();
         addPlantsToSteppes();
     }
@@ -101,7 +106,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     private void addPlantsToSteppes() {
-        if (freeSteppesPlants.size() == 0)
+        if (freeSteppesPlants.size() <= 1)
             return;
         Vector2d v = freeSteppesPlants.poll();
         for (int i = 0; i < freeSteppesPlants.size() && !(animals.get(v) == null); i++) {
@@ -110,11 +115,13 @@ public class WorldMap implements IWorldMap, IElementObserver {
         }
         Plant tempPlant = new Plant(v);
         tempPlant.addObserver(this);
-        plants.put(v, tempPlant);
+        tempPlant.addObserver(visualiser);
+        visualiser.addPlant(tempPlant);
+        addPlant(tempPlant);
     }
 
     private void addPlantsToJungle() {
-        if (freeJunglePlants.size() == 0)
+        if (freeJunglePlants.size() <= 1)
             return;
         Vector2d v = freeJunglePlants.poll();
         for (int i = 0; i < freeJunglePlants.size() && !(animals.get(v) == null); i++) {
@@ -123,7 +130,9 @@ public class WorldMap implements IWorldMap, IElementObserver {
         }
         Plant tempPlant = new Plant(v);
         tempPlant.addObserver(this);
-        plants.put(v, tempPlant);
+        tempPlant.addObserver(visualiser);
+        visualiser.addPlant(tempPlant);
+        addPlant(tempPlant);
     }
 
     public void moveAnimals() {
@@ -155,11 +164,18 @@ public class WorldMap implements IWorldMap, IElementObserver {
     public void place(Animal animal) {
         this.currentNumberOfAnimals++;
         animal.addObserver(this);
+        animal.addObserver(visualiser);
+        visualiser.place(animal);
         Set<Animal> tempAnimalSet = animals.get(animal.getPosition());
         if (tempAnimalSet == null)
             tempAnimalSet = new LinkedHashSet<>();
         tempAnimalSet.add(animal);
         animals.put(animal.getPosition(), tempAnimalSet);
+    }
+
+    @Override
+    public void addPlant(Plant plant) {
+        this.plants.put(plant.getPosition(), plant);
     }
 
     public void eatPlants() {

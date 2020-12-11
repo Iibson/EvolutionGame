@@ -8,8 +8,6 @@ import java.util.Map;
 
 public interface IWorldMap {
 
-    void place(Animal animal);
-
     //    Map<Vector2d, Plant> getPlants();
 //
 //    Vector2d getJungleBounds();
@@ -33,4 +31,8 @@ public interface IWorldMap {
     void reproduceAnimals();
 
     void spentYear();
+
+    boolean checkBounds(Vector2d position);
+
+    void place(Animal animal);
 }
