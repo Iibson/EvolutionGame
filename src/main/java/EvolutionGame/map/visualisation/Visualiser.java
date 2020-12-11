@@ -23,7 +23,7 @@ public class Visualiser implements IElementObserver {
         new ArrayList<>(mapBounds.opposite().square(mapBounds)).forEach(element -> {
             Rectangle rectangle = new Rectangle((element.x + mapBounds.x) * 10, (element.y + mapBounds.y) * 10, 10, 10);
             rectangle.setFill(Color.SANDYBROWN);
-            rectangle.setStroke(Color.BLACK);
+            rectangle.setStroke(Color.TRANSPARENT);
             mapElements.put(element, rectangle);
         });
         new ArrayList<>(jungleBounds.opposite().square(jungleBounds)).forEach(element -> mapElements.get(element).setFill(Color.GREEN));
@@ -35,7 +35,7 @@ public class Visualiser implements IElementObserver {
             mapElements.get(oldPosition).setFill(Color.GREEN);
         else
             mapElements.get(oldPosition).setFill(Color.SANDYBROWN);
-        mapElements.get(animal.getPosition()).setFill(Color.GRAY);
+        mapElements.get(animal.getPosition()).setFill(Color.BLACK);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Visualiser implements IElementObserver {
 
     @Override
     public void place(Animal animal) {
-        this.mapElements.get(animal.getPosition()).setFill(Color.GRAY);
+        this.mapElements.get(animal.getPosition()).setFill(Color.BLACK);
     }
 
     public void addPlant(Plant plant) {

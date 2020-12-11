@@ -29,6 +29,8 @@ public class SimulationEngine {
             genes.add(random.nextInt(8));
         for (int i = 0; i < numberOfStartingAnimals; i++)
             new Animal(world, new Vector2d(random.nextInt(width) - width / 2, random.nextInt(height) - height / 2), MapDirection.NORTH, genes, startEnergy);
+        for(int i = 0; i < 200; i++)
+            this.world.addPlants();
     }
 
     public void simulateAYear() {

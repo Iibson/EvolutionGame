@@ -30,7 +30,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage){
-        SimulationEngine engine = new SimulationEngine(100, 100, 30, 30, 100, 1, 15, 4, 100);
+        SimulationEngine engine = new SimulationEngine(100, 100, 30, 30, 10, 1, 10, 10, 300);
 
         scene = new Scene(engine.visualiser.draw(), 1010, 1010);
         stage.setScene(scene);
