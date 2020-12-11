@@ -2,6 +2,7 @@ package EvolutionGame;
 
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.simulation.SimulationEngine;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -29,13 +30,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage){
-        SimulationEngine engine = new SimulationEngine(100, 100, 30, 30, 1000, 1, 15, 4, 5);
+        SimulationEngine engine = new SimulationEngine(100, 100, 30, 30, 100, 1, 15, 4, 100);
 
         scene = new Scene(engine.visualiser.draw(), 1010, 1010);
         stage.setScene(scene);
         stage.show();
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(80), event -> engine.simulateAYear()));
-        timeline.setCycleCount(1000);
+        timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 //        rectangle.setFill(Color.GREEN);
 //        scene = new Scene((loadFXML("PaneWindow")));

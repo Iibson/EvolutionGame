@@ -23,12 +23,10 @@ public class SimulationEngine {
         Random random = new Random();
         List<Integer> genes = new ArrayList<>();
         this.year = 0;
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 7; i++)
             genes.add(i);
-            genes.add(i);
-            genes.add(i);
-            genes.add(i);
-        }
+        for(int i = 7; i < 32; i ++)
+            genes.add(random.nextInt(8));
         for (int i = 0; i < numberOfStartingAnimals; i++)
             new Animal(world, new Vector2d(random.nextInt(width) - width / 2, random.nextInt(height) - height / 2), MapDirection.NORTH, genes, startEnergy);
     }
