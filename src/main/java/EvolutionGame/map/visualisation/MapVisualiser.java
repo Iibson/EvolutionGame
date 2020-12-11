@@ -9,19 +9,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Visualiser implements IElementObserver {
+public class MapVisualiser implements IElementObserver {
 
     private Map<Vector2d, Rectangle> mapElements;
     private Vector2d jungleBounds;
 
-    public Visualiser(Vector2d mapBounds, Vector2d jungleBounds) {
+    public MapVisualiser(Vector2d mapBounds, Vector2d jungleBounds, int shift) {
         this.jungleBounds = jungleBounds;
         this.mapElements = new HashMap<>();
         new ArrayList<>(mapBounds.opposite().square(mapBounds)).forEach(element -> {
-            Rectangle rectangle = new Rectangle((element.x + mapBounds.x) * 10, (element.y + mapBounds.y) * 10, 10, 10);
+            Rectangle rectangle = new Rectangle((element.x + mapBounds.x) * mapBounds.x / 10, (element.y + mapBounds.y) * mapBounds.x  / 10 + shift, mapBounds.x  / 10, mapBounds.x  /10);
             rectangle.setFill(Color.SANDYBROWN);
             rectangle.setStroke(Color.TRANSPARENT);
             mapElements.put(element, rectangle);
@@ -56,10 +57,7 @@ public class Visualiser implements IElementObserver {
         this.mapElements.get(plant.getPosition()).setFill(Color.LIGHTGREEN);
     }
 
-    public Group draw() {
-        Group group = new Group();
-        for (Vector2d vector2d : mapElements.keySet())
-            group.getChildren().add(mapElements.get(vector2d));
-        return group;
+    public Map<Vector2d, Rectangle> draw() {
+        return Collections.unmodifiableMap(mapElements);
     }
 }

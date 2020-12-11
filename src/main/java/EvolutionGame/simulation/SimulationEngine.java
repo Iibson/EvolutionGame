@@ -4,7 +4,7 @@ import EvolutionGame.data.MapDirection;
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.map.IWorldMap;
 import EvolutionGame.map.WorldMap;
-import EvolutionGame.map.visualisation.Visualiser;
+import EvolutionGame.map.visualisation.MapVisualiser;
 import EvolutionGame.mapElement.animal.Animal;
 
 import java.util.*;
@@ -13,13 +13,13 @@ public class SimulationEngine {
 
     private IWorldMap world;
     private int year;
-    public Visualiser visualiser;
+    MapVisualiser mapVisualiser;
 
-    public SimulationEngine(Integer width, Integer height, Integer jungleWidth, Integer jungleHeight, Integer startEnergy, Integer moveEnergy, Integer plantEnergy, int plantSpawnRatio, int numberOfStartingAnimals) {
+    public SimulationEngine(Integer width, Integer height, Integer jungleWidth, Integer jungleHeight, Integer startEnergy, Integer moveEnergy, Integer plantEnergy, int plantSpawnRatio, int numberOfStartingAnimals, int shift) {
         Vector2d mapBounds = new Vector2d((width / 2), (height / 2));
         Vector2d jungleBounds = new Vector2d((jungleWidth / 2), (jungleHeight / 2));
-        visualiser = new Visualiser(mapBounds, jungleBounds);
-        this.world = new WorldMap(mapBounds, jungleBounds, plantEnergy, startEnergy, plantSpawnRatio, moveEnergy, visualiser);
+        mapVisualiser = new MapVisualiser(mapBounds, jungleBounds, shift);
+        this.world = new WorldMap(mapBounds, jungleBounds, plantEnergy, startEnergy, plantSpawnRatio, moveEnergy, mapVisualiser);
         Random random = new Random();
         List<Integer> genes = new ArrayList<>();
         this.year = 0;

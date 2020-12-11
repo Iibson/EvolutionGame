@@ -107,7 +107,8 @@ public class PaneController extends TextField {
                 Integer.parseInt(moveEnergy.getText()),
                 Integer.parseInt(plantEnergy.getText()),
                 Integer.parseInt(plantSpawnRatio.getText()),
-                Integer.parseInt(startingAnimals.getText())
+                Integer.parseInt(startingAnimals.getText()),
+                0
 
         );
         engine2 = new SimulationEngine(Integer.parseInt(
@@ -119,7 +120,8 @@ public class PaneController extends TextField {
                 Integer.parseInt(moveEnergy.getText()),
                 Integer.parseInt(plantEnergy.getText()),
                 Integer.parseInt(plantSpawnRatio.getText()),
-                Integer.parseInt(startingAnimals.getText())
+                Integer.parseInt(startingAnimals.getText()),
+                Integer.parseInt(height.getText()) + 20
 
         );
     }

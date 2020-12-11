@@ -1,7 +1,6 @@
 package EvolutionGame.map;
 
 import EvolutionGame.data.Vector2d;
-import EvolutionGame.map.visualisation.Visualiser;
 import javafx.util.Pair;
 import EvolutionGame.mapElement.animal.Animal;
 import EvolutionGame.mapElement.plant.Plant;

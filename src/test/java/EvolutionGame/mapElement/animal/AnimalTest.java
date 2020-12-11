@@ -3,7 +3,7 @@ package EvolutionGame.mapElement.animal;
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.data.MapDirection;
 import EvolutionGame.map.WorldMap;
-import EvolutionGame.map.visualisation.Visualiser;
+import EvolutionGame.map.visualisation.MapVisualiser;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class AnimalTest {
     private Random random = new Random();
     private Vector2d mapBounds = new Vector2d((30 / 2), (30 / 2));
     private Vector2d jungleBounds = new Vector2d((30 / 2), (30 / 2));
-    private WorldMap testMap = new WorldMap(mapBounds, jungleBounds, 0, 10, 2, 1, new Visualiser(mapBounds, jungleBounds));
+    private WorldMap testMap = new WorldMap(mapBounds, jungleBounds, 0, 10, 2, 1, new MapVisualiser(mapBounds, jungleBounds, 0));
     private List<Integer> temp = new ArrayList<>();
 
     @Test

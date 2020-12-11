@@ -2,7 +2,7 @@ package EvolutionGame.map;
 
 import EvolutionGame.data.MapDirection;
 import EvolutionGame.data.Vector2d;
-import EvolutionGame.map.visualisation.Visualiser;
+import EvolutionGame.map.visualisation.MapVisualiser;
 import EvolutionGame.mapElement.animal.Animal;
 import EvolutionGame.mapElement.plant.Plant;
 import org.junit.Assert;
@@ -15,7 +15,7 @@ import java.util.Random;
 public class WorldMapTest {
     private Vector2d mapBounds = new Vector2d((12 / 2), (12 / 2));
     private Vector2d jungleBounds = new Vector2d((6 / 2), (6 / 2));
-    private WorldMap map = new WorldMap(mapBounds, jungleBounds, 9, 10, 1, 1, new Visualiser(mapBounds, jungleBounds));
+    private WorldMap map = new WorldMap(mapBounds, jungleBounds, 9, 10, 1, 1, new MapVisualiser(mapBounds, jungleBounds, 0));
     private Random random = new Random();
 
     @Test
@@ -120,7 +120,7 @@ public class WorldMapTest {
             genes.add(0);
         Vector2d mapBounds = new Vector2d((6 / 2), (6 / 2));
         Vector2d jungleBounds = new Vector2d((0 / 2), (0 / 2));
-        WorldMap map = new WorldMap(mapBounds, jungleBounds, 9, 10, 2, 1, new Visualiser(mapBounds, jungleBounds));
+        WorldMap map = new WorldMap(mapBounds, jungleBounds, 9, 10, 2, 1, new MapVisualiser(mapBounds, jungleBounds, 0));
         Animal animal = new Animal(map, new Vector2d(2, 2), MapDirection.NORTH, genes, 10);
         animal.move();
         animal.move();
