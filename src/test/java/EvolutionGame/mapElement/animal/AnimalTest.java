@@ -21,16 +21,6 @@ public class AnimalTest {
 
     @Test
     public void testToString() {
-        Assert.assertEquals(new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, temp, null).toString(), "N");
-    }
-
-    @Test
-    public void testEquals() {
-        List<Integer> genes = new ArrayList<>();
-        for (int i = 0; i < 33; i++) {
-            genes.add(random.nextInt(8));
-        }
-        Assert.assertEquals(new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes, 10),
-                new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes, 10));
+        Assert.assertEquals(new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, temp, 5).toString(), "N");
     }
 }

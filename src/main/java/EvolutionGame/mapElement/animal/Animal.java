@@ -1,7 +1,7 @@
 package EvolutionGame.mapElement.animal;
 
 import EvolutionGame.data.Vector2d;
-import EvolutionGame.map.IElementObserver;
+import EvolutionGame.mapElement.IElementObserver;
 import EvolutionGame.map.IWorldMap;
 import EvolutionGame.data.MapDirection;
 
@@ -12,20 +12,22 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
     private Vector2d position;
     private final IWorldMap map;
     private final List<Integer> genes;
-    private List<IElementObserver> observers;
-    private final Random geneGenerator;
+    private List<IElementObserver> observers = new ArrayList<>();
+    private final Random geneGenerator = new Random();
     private Integer energy;
+    private int years = 0;
+    private List<Animal> offsprings = new ArrayList<>();
+    private long id;
 
     public Animal(IWorldMap map, Vector2d position, MapDirection mapDirection, List<Integer> genes, Integer energy) {
         this.map = map;
         this.position = position;
         this.mapDirection = mapDirection;
-        this.observers = new ArrayList<>();
         this.genes = genes;
         Collections.sort(this.genes);
-        this.geneGenerator = new Random();
         this.energy = energy;
         map.place(this);
+        this.id = geneGenerator.nextLong();
     }
 
     public Vector2d getPosition() {
@@ -34,6 +36,14 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
 
     private MapDirection getMapDirection() {
         return this.mapDirection;
+    }
+
+    private void addOffspring(Animal animal) {
+        this.offsprings.add(animal);
+    }
+
+    public List<Animal> getOffsprings() {
+        return this.offsprings;
     }
 
     @Override
@@ -49,15 +59,21 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
         return genes.get(geneGenerator.nextInt(32));
     }
 
-    public void move() {
-        if (energy < 0) {
+    public boolean move() {
+        if (energy <= 0) {
             removedFromMap();
-            return;
+            return false;
         }
         turn();
         Vector2d oldPosition = this.position;
+        this.years++;
         position = checkBounds(position.add(mapDirection.toUnitVector()));
         positionChanged(oldPosition);
+        return true;
+    }
+
+    public int getYears() {
+        return this.years;
     }
 
     public void subtractEnergy(Integer energy) {
@@ -81,13 +97,19 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
     }
 
     public void reproduce(Animal mate) {
-        new Animal(this.map, this.position, this.mapDirection, generateOffspringGenes(mate), generateOffspringEnergy(mate));
+        Animal animal = new Animal(this.map, this.position, this.mapDirection, generateOffspringGenes(mate), generateOffspringEnergy(mate));
+        addOffspring(animal);
+        mate.addOffspring(animal);
+    }
+
+    private long getId() {
+        return this.id;
     }
 
     private Integer generateOffspringEnergy(Animal mate) {
         Integer offspringEnergy = this.energy / 4 + mate.getEnergy() / 4;
         this.energy = this.energy / 4 * 3;
-        mate.setEnergy(mate.getEnergy() / 4 * 3);
+        mate.setEnergy((mate.getEnergy() / 4) * 3);
         return offspringEnergy;
     }
 
@@ -95,12 +117,14 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
         List<Integer> offspringGenes = new ArrayList<>();
         int[] check = {0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < 21; i++) {
-            offspringGenes.add(this.genes.get(i));
-            check[this.genes.get(i)]++;
+            int temp = geneGenerator.nextInt(32);
+            offspringGenes.add(this.genes.get(temp));
+            check[this.genes.get(temp)]++;
         }
         for (int i = 21; i < 32; i++) {
-            offspringGenes.add((mate.getGenes().get(i)));
-            check[mate.genes.get(i)]++;
+            int temp = geneGenerator.nextInt(32);
+            offspringGenes.add((mate.getGenes().get(temp)));
+            check[mate.getGenes().get(temp)]++;
         }
         for (int i = 0; i < 8; i++) {
             if (check[i] == 0) {
@@ -129,6 +153,8 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
         if (getClass() != other.getClass())
             return false;
         Animal o = (Animal) other;
+        if (((Animal) other).getId() != this.getId())
+            return false;
         if (!((Animal) other).getGenes().equals(this.getGenes()))
             return false;
         if (!((Animal) other).getEnergy().equals(this.getEnergy()))

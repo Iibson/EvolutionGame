@@ -1,4 +1,4 @@
-package EvolutionGame.map;
+package EvolutionGame.mapElement;
 
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.mapElement.animal.Animal;

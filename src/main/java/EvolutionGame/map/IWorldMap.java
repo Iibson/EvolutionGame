@@ -35,4 +35,12 @@ public interface IWorldMap {
     boolean checkBounds(Vector2d position);
 
     void place(Animal animal);
+
+    Animal getAnimal(Vector2d vector2d);
+
+    double getAverageEnergy();
+
+    double getAverageYears();
+
+    double getAverageOffspringsNumber();
 }

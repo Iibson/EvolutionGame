@@ -1,7 +1,7 @@
 package EvolutionGame.mapElement.plant;
 
 import EvolutionGame.data.Vector2d;
-import EvolutionGame.map.IElementObserver;
+import EvolutionGame.mapElement.IElementObserver;
 
 import java.util.ArrayList;
 import java.util.List;

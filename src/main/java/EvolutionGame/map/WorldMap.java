@@ -1,6 +1,7 @@
 package EvolutionGame.map;
 
 import EvolutionGame.data.Vector2d;
+import EvolutionGame.mapElement.IElementObserver;
 import javafx.util.Pair;
 import EvolutionGame.mapElement.animal.Animal;
 import EvolutionGame.mapElement.plant.Plant;
@@ -12,29 +13,28 @@ public class WorldMap implements IWorldMap, IElementObserver {
     private final Vector2d mapBounds;
     private final Vector2d jungleBounds;
     private final Integer plantEnergy;
-    private final Map<Vector2d, Plant> plants;
-    private final Map<Vector2d, Set<Animal>> animals;
-    private final List<Plant> eatenPlants;
+    private final Map<Vector2d, Plant> plants = new LinkedHashMap<>();
+    private final Map<Vector2d, Set<Animal>> animals = new LinkedHashMap<>();
+    private final List<Plant> eatenPlants = new ArrayList<>();
     private final Integer animalStartingEnergy;
-    private int currentNumberOfAnimals;
-    private int currentNumberOfPlants;
+    private int currentNumberOfAnimals = 0;
+    private int currentNumberOfPlants = 0;
     private Queue<Vector2d> freeJunglePlants;
     private Queue<Vector2d> freeSteppesPlants;
     private final int plantsSpawnRatio;
     private final Integer moveEnergy;
     private final IElementObserver visualiser;
+    private long allAnimalsEnergy = 0;
+    private int numberOfDeadAnimals = 0;
+    private long allAnimalYearsLived = 0;
+    private long numberOfAllOffsprings = 0;
 
     public WorldMap(Vector2d mapBounds, Vector2d jungleBounds, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio, Integer moveEnergy, IElementObserver visualiser) {
         this.moveEnergy = moveEnergy;
         this.mapBounds = mapBounds;
         this.plantEnergy = plantEnergy;
         this.jungleBounds = jungleBounds;
-        this.eatenPlants = new ArrayList<>();
-        this.plants = new LinkedHashMap<>();
-        this.animals = new LinkedHashMap<>();
         this.animalStartingEnergy = animalStartingEnergy;
-        this.currentNumberOfAnimals = 0;
-        this.currentNumberOfPlants = 0;
         List<Vector2d> temp = new ArrayList<>(jungleBounds.opposite().square(jungleBounds));
         Collections.shuffle(temp);
         this.freeJunglePlants = new LinkedList<>(temp);
@@ -43,10 +43,6 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.freeSteppesPlants = new LinkedList<>(temp);
         this.plantsSpawnRatio = plantsSpawnRatio;
         this.visualiser = visualiser;
-    }
-
-    public Integer getMoveEnergy() {
-        return moveEnergy;
     }
 
     public int getCurrentNumberOfAnimals() {
@@ -82,14 +78,13 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     public void addPlants() {
-        currentNumberOfPlants += 2;
         List<Vector2d> temp = new ArrayList<>(this.freeJunglePlants);
         Collections.shuffle(temp);
-        if(this.freeJunglePlants.size() != 0)
+        if (this.freeJunglePlants.size() != 0)
             this.freeJunglePlants = new LinkedList<>(temp);
         temp = new ArrayList<>(this.freeSteppesPlants);
         Collections.shuffle(temp);
-        if(this.freeSteppesPlants.size() != 0)
+        if (this.freeSteppesPlants.size() != 0)
             this.freeSteppesPlants = new LinkedList<>(temp);
         addPlantsToJungle();
         addPlantsToSteppes();
@@ -105,7 +100,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     private void addPlantsToSteppes() {
-        if (freeSteppesPlants.size() <= 1)
+        if (freeSteppesPlants.size() <= 5)
             return;
         Vector2d v = freeSteppesPlants.poll();
         for (int i = 0; i < freeSteppesPlants.size() && !(animals.get(v) == null); i++) {
@@ -117,10 +112,11 @@ public class WorldMap implements IWorldMap, IElementObserver {
         tempPlant.addObserver(visualiser);
         visualiser.addPlant(tempPlant);
         addPlant(tempPlant);
+        currentNumberOfPlants += 1;
     }
 
     private void addPlantsToJungle() {
-        if (freeJunglePlants.size() <= 1)
+        if (freeJunglePlants.size() <= 5)
             return;
         Vector2d v = freeJunglePlants.poll();
         for (int i = 0; i < freeJunglePlants.size() && !(animals.get(v) == null); i++) {
@@ -132,6 +128,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         tempPlant.addObserver(visualiser);
         visualiser.addPlant(tempPlant);
         addPlant(tempPlant);
+        currentNumberOfPlants += 1;
     }
 
     public void moveAnimals() {
@@ -139,8 +136,11 @@ public class WorldMap implements IWorldMap, IElementObserver {
                 .flatMap(Set::stream)
                 .collect(Collectors.toList())
                 .forEach(animal -> {
-                    animal.move();
-                    animal.subtractEnergy(this.moveEnergy);
+                    if(animal.move()){
+                        this.allAnimalYearsLived++;
+                        animal.subtractEnergy(this.moveEnergy);
+                        this.allAnimalsEnergy -= this.moveEnergy;
+                    }
                 });
     }
 
@@ -170,6 +170,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
             tempAnimalSet = new LinkedHashSet<>();
         tempAnimalSet.add(animal);
         animals.put(animal.getPosition(), tempAnimalSet);
+        this.allAnimalsEnergy += animal.getEnergy();
     }
 
     @Override
@@ -201,7 +202,10 @@ public class WorldMap implements IWorldMap, IElementObserver {
                 currentMaxEnergy = potentialEater.getEnergy();
             }
         }
-        tempEaters.forEach(eater -> eater.addEnergy(plantEnergy / tempEaters.size()));
+        tempEaters.forEach(eater -> {
+            eater.addEnergy(plantEnergy / tempEaters.size());
+            this.allAnimalsEnergy += plantEnergy / tempEaters.size();
+        });
         removePlant(plant);
     }
 
@@ -232,12 +236,19 @@ public class WorldMap implements IWorldMap, IElementObserver {
                 }
             }
         }
-        potentialParents.forEach(pair -> pair.getKey().reproduce(pair.getValue()));
+        potentialParents.forEach(pair -> {
+            this.allAnimalsEnergy -= pair.getKey().getEnergy() + pair.getValue().getEnergy();
+            pair.getKey().reproduce(pair.getValue());
+            this.allAnimalsEnergy += pair.getKey().getEnergy() + pair.getValue().getEnergy();
+            this.numberOfAllOffsprings += 2;
+        });
     }
 
     public void removedFromMap(Vector2d position, Animal element) {
         animals.get(position).remove(element);
         this.currentNumberOfAnimals--;
+        this.numberOfDeadAnimals++;
+        this.numberOfAllOffsprings -= element.getOffsprings().size();
         if (animals.get(position).isEmpty())
             animals.remove(position);
     }
@@ -252,5 +263,27 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.moveAnimals();
         this.eatPlants();
         this.reproduceAnimals();
+    }
+
+    public Animal getAnimal(Vector2d vector2d) {
+        return animals.get(vector2d).iterator().next();
+    }
+
+    public double getAverageEnergy() {
+        if (currentNumberOfAnimals == 0)
+            return 0;
+        return this.allAnimalsEnergy / this.currentNumberOfAnimals;
+    }
+
+    public double getAverageYears() {
+        if (numberOfDeadAnimals == 0)
+            return 0;
+        return this.allAnimalYearsLived / this.numberOfDeadAnimals;
+    }
+
+    public double getAverageOffspringsNumber() {
+        if (this.currentNumberOfAnimals == 0)
+            return 0;
+        return this.numberOfAllOffsprings / this.currentNumberOfAnimals;
     }
 }
