@@ -42,10 +42,18 @@ public class MapVisualiser implements IElementObserver {
 
     @Override
     public void positionChanged(Animal animal, Vector2d oldPosition) {
-        if (oldPosition.follows(jungleBounds.opposite()) && oldPosition.precedes(jungleBounds))
-            mapElements.get(oldPosition).setFill(Color.GREEN);
-        else
-            mapElements.get(oldPosition).setFill(Color.SANDYBROWN);
+        Animal tempAnimal = map.getAnimal(oldPosition);
+        if (oldPosition.follows(jungleBounds.opposite()) && oldPosition.precedes(jungleBounds)) {
+            if (tempAnimal == null)
+                mapElements.get(oldPosition).setFill(Color.GREEN);
+            else
+                mapElements.get(tempAnimal.getPosition()).setFill(Color.rgb(Math.min(255, tempAnimal.getEnergy()), 0, 0));
+        } else {
+            if (tempAnimal == null)
+                mapElements.get(oldPosition).setFill(Color.SANDYBROWN);
+            else
+                mapElements.get(tempAnimal.getPosition()).setFill(Color.rgb(Math.min(255, tempAnimal.getEnergy()), 0, 0));
+        }
         if (animal.equals(chosenAnimal)) {
             mapElements.get(animal.getPosition()).setFill(Color.BLUE);
             currentlyFollowed = mapElements.get(animal.getPosition());
@@ -66,7 +74,8 @@ public class MapVisualiser implements IElementObserver {
 
     @Override
     public void place(Animal animal) {
-        mapElements.get(animal.getPosition()).setFill(Color.rgb(Math.min(255, animal.getEnergy()), 0, 0)); }
+        mapElements.get(animal.getPosition()).setFill(Color.rgb(Math.min(255, animal.getEnergy()), 0, 0));
+    }
 
     public void addPlant(Plant plant) {
         this.mapElements.get(plant.getPosition()).setFill(Color.LIGHTGREEN);
@@ -95,10 +104,11 @@ public class MapVisualiser implements IElementObserver {
                 "\nGenes: " + chosenAnimal.getGenes().toString();
     }
 
-    public void showDominantGenes(List<Integer> genes) {
+    public void showDominantGenes() {
+        List<Integer> genes = map.getCurrentDominantGenes();
         mapElements.forEach((vector2d, rectangle) -> {
-            if(rectangle.getFill() != Color.SANDYBROWN && rectangle.getFill() != Color.LIGHTGREEN && rectangle.getFill() != Color.GREEN)
-                if(genes.equals(map.getAnimal(vector2d).getGenes()))
+            if (rectangle.getFill() != Color.SANDYBROWN && rectangle.getFill() != Color.LIGHTGREEN && rectangle.getFill() != Color.GREEN)
+                if (genes.equals(map.getAnimal(vector2d).getGenes()))
                     rectangle.setFill(Color.YELLOW);
         });
     }

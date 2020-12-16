@@ -93,20 +93,6 @@ public class WorldMap implements IWorldMap, IElementObserver {
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
-    private void addPlantsToSteppes() {
-        Vector2d v = freeSteppesPlants.poll();
-        for (int i = 0; i < freeSteppesPlants.size() && !(animals.get(v) == null); i++) {
-            freeSteppesPlants.add(v);
-            v = freeSteppesPlants.poll();
-        }
-        if (!(animals.get(v) == null))
-            return;
-        Plant tempPlant = new Plant(v);
-        visualiser.addPlant(tempPlant);
-        addPlant(tempPlant);
-        currentNumberOfPlants += 1;
-    }
-
     public void addPlants() {
         List<Vector2d> temp = new ArrayList<>(this.freeJunglePlants);
         Collections.shuffle(temp);
@@ -116,33 +102,21 @@ public class WorldMap implements IWorldMap, IElementObserver {
         Collections.shuffle(temp);
         if (this.freeSteppesPlants.size() != 0)
             this.freeSteppesPlants = new LinkedList<>(temp);
-        for (int i = 0; i < this.plantsSpawnRatio && freeJunglePlants.size() > 1; i++)
-            addPlantsToJungle();
-        for (int i = 0; i < this.plantsSpawnRatio && freeSteppesPlants.size() > 1; i++)
-            addPlantsToSteppes();
+        for (int i = 0; i < this.plantsSpawnRatio && freeJunglePlants.size() >= 1; i++)
+            addPlantsToArea(freeJunglePlants);
+        for (int i = 0; i < this.plantsSpawnRatio && freeSteppesPlants.size() >= 1; i++)
+            addPlantsToArea(freeSteppesPlants);
     }
 
-    private void addPlantsToJungle() {
-        Vector2d v = freeJunglePlants.poll();
-        for (int i = 0; i < freeJunglePlants.size() && !(animals.get(v) == null); i++) {
-            freeJunglePlants.add(v);
-            v = freeJunglePlants.poll();
-        }
-        if (!(animals.get(v) == null))
-            return;
-        Plant tempPlant = new Plant(v);
-        visualiser.addPlant(tempPlant);
-        addPlant(tempPlant);
-        currentNumberOfPlants++;
-    }
-
-    private void addPlantstoArea(LinkedList<Vector2d> area) {
-        if (area.size() == 0)
-            return;
+    private void addPlantsToArea(Queue<Vector2d> area) {
         Vector2d v = area.poll();
         for (int i = 1; i < area.size() && !(animals.get(v) == null); i++) {
             area.add(v);
             v = area.poll();
+        }
+        if (!(animals.get(v) == null)) {
+            area.add(v);
+            return;
         }
         Plant tempPlant = new Plant(v);
         visualiser.addPlant(tempPlant);
@@ -286,8 +260,8 @@ public class WorldMap implements IWorldMap, IElementObserver {
             animals.remove(position);
         Integer temp = dominantGenes.remove(element.getGenes());
         dominantGenes.put(element.getGenes(), temp - 1);
-        if(temp.equals(currentDominantGenesNumber))
-            currentDominantGenesNumber --;
+        if (temp.equals(currentDominantGenesNumber))
+            currentDominantGenesNumber--;
     }
 
     private void removePlant(Plant plant) {
@@ -306,8 +280,13 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     public Animal getAnimal(Vector2d vector2d) {
-        return animals.get(vector2d).iterator().next();
+        if(animals.get(vector2d) != null){
+            if(animals.get(vector2d).iterator().hasNext())
+                return animals.get(vector2d).iterator().next();
+        }
+        return null;
     }
+
 
     public double getAverageEnergy() {
         if (currentNumberOfAnimals == 0)

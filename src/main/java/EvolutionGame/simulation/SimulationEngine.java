@@ -90,7 +90,7 @@ class SimulationEngine {
 
 
     void showDominantGenes() {
-        mapVisualiser.showDominantGenes(world.getCurrentDominantGenes());
+        mapVisualiser.showDominantGenes();
     }
 
     Map<Vector2d, Rectangle> draw(){
