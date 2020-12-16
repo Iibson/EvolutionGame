@@ -17,7 +17,7 @@ public class AppSimulation implements EventHandler {
     private boolean engine2Running = true;
     private Button stopEngine1 = new Button();
     private Button stopEngine2 = new Button();
-    private Button stopSimulations = new Button();
+    private Button dominantGenes = new Button();
     private boolean isRunning;
     private TextField startingAnimals = new TextField();
     private TextField plantSpawnRatio = new TextField();
@@ -48,45 +48,45 @@ public class AppSimulation implements EventHandler {
         stopEngine2.setText("pause 2nd simulation");
         stopEngine2.setLayoutX(10);
         stopEngine2.setLayoutY(740);
-        stopSimulations.setOnAction(this);
-        stopSimulations.setVisible(false);
-        stopSimulations.setText("clear both simulations");
-        stopSimulations.setLayoutX(10);
-        stopSimulations.setLayoutY(780);
+        dominantGenes.setOnAction(this);
+        dominantGenes.setVisible(false);
+        dominantGenes.setText("show dominant genes");
+        dominantGenes.setLayoutX(10);
+        dominantGenes.setLayoutY(780);
 
         this.isRunning = false;
 
         startSimulation.setOnAction(this);
         startSimulation.setVisible(true);
         startSimulation.setText("startSimulation");
-        startSimulation.setLayoutX(900);
+        startSimulation.setLayoutX(1300);
         startSimulation.setLayoutY(570);
 
-        this.height.setLayoutX(900);
+        this.height.setLayoutX(1300);
         this.height.setLayoutY(600);
         this.height.setText("100");
-        this.width.setLayoutX(900);
+        this.width.setLayoutX(1300);
         this.width.setLayoutY(630);
         this.width.setText("100");
-        this.jungleWidth.setLayoutX(900);
+        this.jungleWidth.setLayoutX(1300);
         this.jungleWidth.setLayoutY(690);
         this.jungleWidth.setText("50");
-        this.jungleHeight.setLayoutX(900);
+        this.jungleHeight.setLayoutX(1300);
         this.jungleHeight.setLayoutY(660);
         this.jungleHeight.setText("50");
-        this.startingAnimals.setLayoutX(900);
+        this.startingAnimals.setLayoutX(1300);
         this.startingAnimals.setLayoutY(720);
         this.startingAnimals.setText("100");
-        this.plantSpawnRatio.setLayoutX(900);
+        this.plantSpawnRatio.setLayoutX(1300);
         this.plantSpawnRatio.setLayoutY(750);
         this.plantSpawnRatio.setText("4");
-        this.plantEnergy.setLayoutX(900);
+        this.plantEnergy.setLayoutX(1300);
         this.plantEnergy.setLayoutY(780);
         this.plantEnergy.setText("15");
-        this.startEnergy.setLayoutX(900);
+        this.startEnergy.setLayoutX(1300);
         this.startEnergy.setLayoutY(810);
         this.startEnergy.setText("30");
-        this.moveEnergy.setLayoutX(900);
+        this.moveEnergy.setLayoutX(1300);
         this.moveEnergy.setLayoutY(840);
         this.moveEnergy.setText("1");
 
@@ -125,68 +125,68 @@ public class AppSimulation implements EventHandler {
         Group group = new Group();
         Label label;
         if (isRunning) {
-            for (Vector2d v : engine1.mapVisualiser.draw().keySet())
-                group.getChildren().add(engine1.mapVisualiser.draw().get(v));
-            for (Vector2d v : engine2.mapVisualiser.draw().keySet())
-                group.getChildren().add(engine2.mapVisualiser.draw().get(v));
+            for (Vector2d v : engine1.draw().keySet())
+                group.getChildren().add(engine1.draw().get(v));
+            for (Vector2d v : engine2.draw().keySet())
+                group.getChildren().add(engine2.draw().get(v));
         }
         group.getChildren().add(stopEngine1);
         group.getChildren().add(stopEngine2);
-        group.getChildren().add(stopSimulations);
+        group.getChildren().add(dominantGenes);
         group.getChildren().add(engine1Info);
         group.getChildren().add(engine2Info);
         group.getChildren().add(engine1ChosenAnimal);
         group.getChildren().add(engine2ChosenAnimal);
         label = new Label();
-        label.setLayoutX(800);
+        label.setLayoutX(1200);
         label.setLayoutY(720);
         label.setText("startingAnimals");
         group.getChildren().add(label);
         group.getChildren().add(startingAnimals);
         label = new Label();
-        label.setLayoutX(800);
+        label.setLayoutX(1200);
         label.setLayoutY(750);
         label.setText("plantSpawnRatio");
         group.getChildren().add(label);
         group.getChildren().add(plantSpawnRatio);
         label = new Label();
-        label.setLayoutX(800);
+        label.setLayoutX(1200);
         label.setLayoutY(660);
         label.setText("jungleHeight");
         group.getChildren().add(label);
         group.getChildren().add(jungleHeight);
         label = new Label();
-        label.setLayoutX(800);
+        label.setLayoutX(1200);
         label.setLayoutY(690);
         label.setText("jungleWidth");
         group.getChildren().add(label);
         group.getChildren().add(jungleWidth);
         label = new Label();
-        label.setLayoutX(800);
+        label.setLayoutX(1200);
         label.setLayoutY(630);
         label.setText("width");
         group.getChildren().add(label);
         group.getChildren().add(width);
         label = new Label();
-        label.setLayoutX(800);
+        label.setLayoutX(1200);
         label.setLayoutY(600);
         label.setText("height");
         group.getChildren().add(label);
         group.getChildren().add(height);
         label = new Label();
-        label.setLayoutX(800);
+        label.setLayoutX(1200);
         label.setLayoutY(840);
         label.setText("moveEnergy");
         group.getChildren().add(label);
         group.getChildren().add(moveEnergy);
         label = new Label();
-        label.setLayoutX(800);
+        label.setLayoutX(1200);
         label.setLayoutY(780);
         label.setText("plantEnergy");
         group.getChildren().add(label);
         group.getChildren().add(plantEnergy);
         label = new Label();
-        label.setLayoutX(800);
+        label.setLayoutX(1200);
         label.setLayoutY(810);
         label.setText("startEnergy");
         group.getChildren().add(label);
@@ -201,10 +201,9 @@ public class AppSimulation implements EventHandler {
             new Thread(() -> engine1Running = !engine1Running).start();
         if (event.getSource() == stopEngine2)
             new Thread(() -> engine2Running = !engine2Running).start();
-        if (event.getSource() == stopSimulations) {
-            engine1Running = false;
-            engine2Running = false;
-            clear();
+        if (event.getSource() == dominantGenes) {
+            engine1.showDominantGenes();
+            engine2.showDominantGenes();
         }
         if (event.getSource() == startSimulation) {
             try {
@@ -229,7 +228,7 @@ public class AppSimulation implements EventHandler {
         changedSimulation();
         stopEngine1.setVisible(false);
         stopEngine2.setVisible(false);
-        stopSimulations.setVisible(false);
+        dominantGenes.setVisible(false);
         engine1Info.setVisible(false);
         engine2Info.setVisible(false);
         engine1ChosenAnimal.setVisible(false);
@@ -267,7 +266,7 @@ public class AppSimulation implements EventHandler {
         );
         stopEngine1.setVisible(true);
         stopEngine2.setVisible(true);
-        stopSimulations.setVisible(true);
+        dominantGenes.setVisible(true);
         engine1Info.setVisible(true);
         engine2Info.setVisible(true);
         engine1ChosenAnimal.setVisible(true);

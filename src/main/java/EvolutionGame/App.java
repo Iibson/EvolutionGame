@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
+ *
+ * w pom.xml znajduje się <executable>path/bin/java</executable> program może nie zadziałć bez ustawienia path
+ *
  * JavaFX App
  */
 public class App extends Application implements ISimulationObserver {
@@ -22,10 +25,10 @@ public class App extends Application implements ISimulationObserver {
     public void start(Stage stage) {
         window = stage;
         engine = new AppSimulation(this);
-        Scene scene = new Scene(engine.draw(), 1130, 900);
+        Scene scene = new Scene(engine.draw(), 1480, 900);
         window.setScene(scene);
         window.show();
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(8), event -> engine.simulate()));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(80), event -> engine.simulate()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
@@ -37,6 +40,6 @@ public class App extends Application implements ISimulationObserver {
 
     @Override
     public void changedSimulation() {
-        window.setScene(new Scene(engine.draw(), 1130, 900));
+        window.setScene(new Scene(engine.draw(), 1480, 900));
     }
 }

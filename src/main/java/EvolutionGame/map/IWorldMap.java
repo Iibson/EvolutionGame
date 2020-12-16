@@ -4,6 +4,7 @@ import EvolutionGame.data.Vector2d;
 import EvolutionGame.mapElement.animal.Animal;
 import EvolutionGame.mapElement.plant.Plant;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IWorldMap {
@@ -43,4 +44,6 @@ public interface IWorldMap {
     double getAverageYears();
 
     double getAverageOffspringsNumber();
+
+    List<Integer> getCurrentDominantGenes();
 }

@@ -128,4 +128,24 @@ public class WorldMapTest {
         Assert.assertEquals(new Vector2d(-2, -2), animal.getPosition());
     }
 
+    @Test
+    public void testCurrentDominantGenes(){
+        List<Integer> genes = new ArrayList<>();
+        List<Integer> genes2 = new ArrayList<>();
+        List<Integer> genes1 = new ArrayList<>();
+        for (int i = 0; i < 32; i++)
+            genes.add(0);
+        for (int i = 0; i < 32; i++)
+            genes1.add(1);
+        for (int i = 0; i < 32; i++)
+            genes2.add(2);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10);
+        Animal a1 = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5);
+        Animal a12 = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5);
+        Animal a13 = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes1, 10);
+        Assert.assertEquals(genes2, map.getCurrentDominantGenes());
+    }
+
 }

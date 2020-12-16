@@ -171,6 +171,18 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
         observers.remove(observer);
     }
 
+    public long getNumberOfDescendant(Set<Animal> animals){
+        long i = 0;
+        for (Animal offspring : offsprings) {
+            i += 1;
+            if(!animals.contains(offspring)){
+                animals.add(offspring);
+                i += offspring.getNumberOfDescendant(animals);
+            }
+        }
+        return i;
+    }
+
     private void positionChanged(Vector2d oldPosition) {
         observers.forEach(observer -> observer.positionChanged(this, oldPosition));
     }

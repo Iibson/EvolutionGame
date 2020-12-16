@@ -8,10 +8,7 @@ import EvolutionGame.mapElement.plant.Plant;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MapVisualiser implements IElementObserver {
 
@@ -69,8 +66,7 @@ public class MapVisualiser implements IElementObserver {
 
     @Override
     public void place(Animal animal) {
-        this.mapElements.get(animal.getPosition()).setFill(Color.BLACK);
-    }
+        mapElements.get(animal.getPosition()).setFill(Color.rgb(Math.min(255, animal.getEnergy()), 0, 0)); }
 
     public void addPlant(Plant plant) {
         this.mapElements.get(plant.getPosition()).setFill(Color.LIGHTGREEN);
@@ -94,7 +90,16 @@ public class MapVisualiser implements IElementObserver {
             return "";
         return "Energy: " + chosenAnimal.getEnergy() +
                 "\nNumber of Children: " + chosenAnimal.getOffsprings().size() +
+                "\nNumber of Descendants: " + chosenAnimal.getNumberOfDescendant(new HashSet<>()) +
                 "\nYears: " + chosenAnimal.getYears() +
                 "\nGenes: " + chosenAnimal.getGenes().toString();
+    }
+
+    public void showDominantGenes(List<Integer> genes) {
+        mapElements.forEach((vector2d, rectangle) -> {
+            if(rectangle.getFill() != Color.SANDYBROWN && rectangle.getFill() != Color.LIGHTGREEN && rectangle.getFill() != Color.GREEN)
+                if(genes.equals(map.getAnimal(vector2d).getGenes()))
+                    rectangle.setFill(Color.YELLOW);
+        });
     }
 }

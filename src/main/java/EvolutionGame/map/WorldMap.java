@@ -2,6 +2,7 @@ package EvolutionGame.map;
 
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.mapElement.IElementObserver;
+import javafx.scene.paint.Color;
 import javafx.util.Pair;
 import EvolutionGame.mapElement.animal.Animal;
 import EvolutionGame.mapElement.plant.Plant;
@@ -28,6 +29,9 @@ public class WorldMap implements IWorldMap, IElementObserver {
     private int numberOfDeadAnimals = 0;
     private long allAnimalYearsLived = 0;
     private long numberOfAllOffsprings = 0;
+    private final HashMap<List<Integer>, Integer> dominantGenes;
+    private List<Integer> currentDominantGenes;
+    private Integer currentDominantGenesNumber = 0;
 
     public WorldMap(Vector2d mapBounds, Vector2d jungleBounds, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio, Integer moveEnergy, IElementObserver visualiser) {
         this.moveEnergy = moveEnergy;
@@ -35,6 +39,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.plantEnergy = plantEnergy;
         this.jungleBounds = jungleBounds;
         this.animalStartingEnergy = animalStartingEnergy;
+        this.currentDominantGenes = new ArrayList<>();
         List<Vector2d> temp = new ArrayList<>(jungleBounds.opposite().square(jungleBounds));
         Collections.shuffle(temp);
         this.freeJunglePlants = new LinkedList<>(temp);
@@ -43,6 +48,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.freeSteppesPlants = new LinkedList<>(temp);
         this.plantsSpawnRatio = plantsSpawnRatio;
         this.visualiser = visualiser;
+        this.dominantGenes = new HashMap<>();
     }
 
     public int getCurrentNumberOfAnimals() {
@@ -77,18 +83,6 @@ public class WorldMap implements IWorldMap, IElementObserver {
         return position.follows(jungleBounds.opposite()) && position.precedes(jungleBounds);
     }
 
-    public void addPlants() {
-        List<Vector2d> temp = new ArrayList<>(this.freeJunglePlants);
-        Collections.shuffle(temp);
-        if (this.freeJunglePlants.size() != 0)
-            this.freeJunglePlants = new LinkedList<>(temp);
-        temp = new ArrayList<>(this.freeSteppesPlants);
-        Collections.shuffle(temp);
-        if (this.freeSteppesPlants.size() != 0)
-            this.freeSteppesPlants = new LinkedList<>(temp);
-        addPlantsToJungle();
-        addPlantsToSteppes();
-    }
 
     private Queue<Vector2d> prepareFreeSteppesPlants() {
         return mapBounds
@@ -100,35 +94,60 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     private void addPlantsToSteppes() {
-        if (freeSteppesPlants.size() <= 5)
-            return;
         Vector2d v = freeSteppesPlants.poll();
         for (int i = 0; i < freeSteppesPlants.size() && !(animals.get(v) == null); i++) {
             freeSteppesPlants.add(v);
             v = freeSteppesPlants.poll();
         }
+        if (!(animals.get(v) == null))
+            return;
         Plant tempPlant = new Plant(v);
-        tempPlant.addObserver(this);
-        tempPlant.addObserver(visualiser);
         visualiser.addPlant(tempPlant);
         addPlant(tempPlant);
         currentNumberOfPlants += 1;
     }
 
+    public void addPlants() {
+        List<Vector2d> temp = new ArrayList<>(this.freeJunglePlants);
+        Collections.shuffle(temp);
+        if (this.freeJunglePlants.size() != 0)
+            this.freeJunglePlants = new LinkedList<>(temp);
+        temp = new ArrayList<>(this.freeSteppesPlants);
+        Collections.shuffle(temp);
+        if (this.freeSteppesPlants.size() != 0)
+            this.freeSteppesPlants = new LinkedList<>(temp);
+        for (int i = 0; i < this.plantsSpawnRatio && freeJunglePlants.size() > 1; i++)
+            addPlantsToJungle();
+        for (int i = 0; i < this.plantsSpawnRatio && freeSteppesPlants.size() > 1; i++)
+            addPlantsToSteppes();
+    }
+
     private void addPlantsToJungle() {
-        if (freeJunglePlants.size() <= 5)
-            return;
         Vector2d v = freeJunglePlants.poll();
         for (int i = 0; i < freeJunglePlants.size() && !(animals.get(v) == null); i++) {
             freeJunglePlants.add(v);
             v = freeJunglePlants.poll();
         }
+        if (!(animals.get(v) == null))
+            return;
         Plant tempPlant = new Plant(v);
-        tempPlant.addObserver(this);
-        tempPlant.addObserver(visualiser);
         visualiser.addPlant(tempPlant);
         addPlant(tempPlant);
-        currentNumberOfPlants += 1;
+        currentNumberOfPlants++;
+    }
+
+    private void addPlantstoArea(LinkedList<Vector2d> area) {
+        if (area.size() == 0)
+            return;
+        Vector2d v = area.poll();
+        for (int i = 1; i < area.size() && !(animals.get(v) == null); i++) {
+            area.add(v);
+            v = area.poll();
+        }
+        Plant tempPlant = new Plant(v);
+        visualiser.addPlant(tempPlant);
+        addPlant(tempPlant);
+        currentNumberOfPlants++;
     }
 
     public void moveAnimals() {
@@ -136,7 +155,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
                 .flatMap(Set::stream)
                 .collect(Collectors.toList())
                 .forEach(animal -> {
-                    if(animal.move()){
+                    if (animal.move()) {
                         this.allAnimalYearsLived++;
                         animal.subtractEnergy(this.moveEnergy);
                         this.allAnimalsEnergy -= this.moveEnergy;
@@ -158,6 +177,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
             eatenPlants.add(plants.get(animal.getPosition()));
             plants.get(animal.getPosition()).setBeingEaten(true);
         }
+//        System.out.println("aaaa " + eatenPlants.size());
     }
 
     public void place(Animal animal) {
@@ -171,6 +191,19 @@ public class WorldMap implements IWorldMap, IElementObserver {
         tempAnimalSet.add(animal);
         animals.put(animal.getPosition(), tempAnimalSet);
         this.allAnimalsEnergy += animal.getEnergy();
+        Integer temp = dominantGenes.get(animal.getGenes());
+        if (temp == null) {
+            temp = 1;
+            dominantGenes.put(animal.getGenes(), temp);
+        } else {
+            dominantGenes.remove(animal.getGenes());
+            temp++;
+            dominantGenes.put(animal.getGenes(), temp);
+        }
+        if (temp > currentDominantGenesNumber) {
+            currentDominantGenesNumber = temp;
+            currentDominantGenes = animal.getGenes();
+        }
     }
 
     @Override
@@ -181,11 +214,11 @@ public class WorldMap implements IWorldMap, IElementObserver {
     public void eatPlants() {
         for (Plant plant : eatenPlants) {
             currentNumberOfPlants--;
-            eatPlant(plant, animals.get(plant.getPosition()));
             if (isInJungle(plant.getPosition()))
                 freeJunglePlants.add(plant.getPosition());
             else
                 freeSteppesPlants.add(plant.getPosition());
+            eatPlant(plant, animals.get(plant.getPosition()));
         }
         eatenPlants.clear();
     }
@@ -251,6 +284,10 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.numberOfAllOffsprings -= element.getOffsprings().size();
         if (animals.get(position).isEmpty())
             animals.remove(position);
+        Integer temp = dominantGenes.remove(element.getGenes());
+        dominantGenes.put(element.getGenes(), temp - 1);
+        if(temp.equals(currentDominantGenesNumber))
+            currentDominantGenesNumber --;
     }
 
     private void removePlant(Plant plant) {
@@ -258,11 +295,14 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     public void spentYear() {
-        for (int i = 0; i < this.plantsSpawnRatio; i++)
-            this.addPlants();
+        this.addPlants();
         this.moveAnimals();
         this.eatPlants();
         this.reproduceAnimals();
+    }
+
+    public List<Integer> getCurrentDominantGenes() {
+        return this.currentDominantGenes;
     }
 
     public Animal getAnimal(Vector2d vector2d) {

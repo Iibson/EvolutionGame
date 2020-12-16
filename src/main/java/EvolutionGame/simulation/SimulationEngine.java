@@ -7,6 +7,8 @@ import EvolutionGame.map.WorldMap;
 import EvolutionGame.map.visualisation.IMapVisualiserObserver;
 import EvolutionGame.map.visualisation.MapVisualiser;
 import EvolutionGame.mapElement.animal.Animal;
+import javafx.scene.Group;
+import javafx.scene.shape.Rectangle;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,9 +24,8 @@ class SimulationEngine {
 
     private IWorldMap world;
     private int year;
-    MapVisualiser mapVisualiser;
+    private MapVisualiser mapVisualiser;
     private int saveTime;
-    private File file;
 
     SimulationEngine(Integer width, Integer height, Integer jungleWidth, Integer jungleHeight, Integer startEnergy, Integer moveEnergy, Integer plantEnergy, int plantSpawnRatio, int numberOfStartingAnimals, int shift, int saveTime) {
         Vector2d mapBounds = new Vector2d((width / 2), (height / 2));
@@ -43,7 +44,7 @@ class SimulationEngine {
         for (int i = 0; i < numberOfStartingAnimals; i++)
             new Animal(world, new Vector2d(random.nextInt(width) - width / 2, random.nextInt(height) - height / 2), MapDirection.NORTH, genes, startEnergy);
         try {
-            file = new File("simulation.txt");
+            File file = new File("simulation.txt");
             if (file.delete())
                 System.out.println("file deleted");
             if (file.createNewFile())
@@ -71,6 +72,7 @@ class SimulationEngine {
                 ",\n Average Energy: " + (int) this.world.getAverageEnergy() +
                 ",\n Average Life Span: " + (int) this.world.getAverageYears() +
                 ",\n Average Children: " + (int) this.world.getAverageOffspringsNumber() +
+                "\n Current Dominant Genes: " + this.world.getCurrentDominantGenes() +
                 "\n\n";
     }
 
@@ -84,7 +86,14 @@ class SimulationEngine {
         } catch (IOException e) {
             System.out.println(e.toString());
         }
-
     }
 
+
+    void showDominantGenes() {
+        mapVisualiser.showDominantGenes(world.getCurrentDominantGenes());
+    }
+
+    Map<Vector2d, Rectangle> draw(){
+        return mapVisualiser.draw();
+    }
 }
