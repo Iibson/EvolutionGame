@@ -7,9 +7,7 @@ import EvolutionGame.map.visualisation.MapVisualiser;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 public class AnimalTest {
@@ -22,5 +20,51 @@ public class AnimalTest {
     @Test
     public void testToString() {
         Assert.assertEquals(new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, temp, 5).toString(), "N");
+    }
+
+    @Test
+    public void testGeneratingOffspringGenes() {
+        List<Integer> genes = new ArrayList<>();
+        List<Integer> genes1 = new ArrayList<>();
+        for (int i = 0; i < 32; i++)
+            genes.add(0);
+        for (int i = 0; i < 32; i++)
+            genes1.add(1);
+        Animal a1 = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes, 10);
+        Animal a2 = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 10);
+        testMap.reproduceAnimals();
+        Assert.assertEquals(3, testMap.getAnimalsFromPosition(new Vector2d(1, 1)).size());
+        Iterator iterator = testMap.getAnimalsFromPosition(new Vector2d(1, 1)).iterator();
+        Animal temp;
+        while (iterator.hasNext()) {
+            temp = (Animal) iterator.next();
+            if(temp.equals(a1) || temp.equals(a2))
+                continue;
+            Assert.assertTrue(temp.getGenes().contains(0));
+            Assert.assertTrue(temp.getGenes().contains(1));
+            Assert.assertTrue(temp.getGenes().contains(2));
+            Assert.assertTrue(temp.getGenes().contains(3));
+            Assert.assertTrue(temp.getGenes().contains(4));
+            Assert.assertTrue(temp.getGenes().contains(5));
+            Assert.assertTrue(temp.getGenes().contains(6));
+            Assert.assertTrue(temp.getGenes().contains(7));
+        }
+    }
+
+    @Test
+    public void testNumberOfDescendants() {
+        List<Integer> genes = new ArrayList<>();
+        List<Integer> genes1 = new ArrayList<>();
+        for (int i = 0; i < 32; i++)
+            genes.add(0);
+        for (int i = 0; i < 32; i++)
+            genes1.add(1);
+        Animal testAnimal = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes, 1000);
+        new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000);
+        new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000);
+        new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000);
+        testMap.reproduceAnimals();
+        testMap.reproduceAnimals();
+        Assert.assertEquals(3, testAnimal.getNumberOfDescendant(new HashSet<>()));
     }
 }
