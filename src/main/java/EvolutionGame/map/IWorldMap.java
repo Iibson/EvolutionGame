@@ -2,10 +2,8 @@ package EvolutionGame.map;
 
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.mapElement.animal.Animal;
-import EvolutionGame.mapElement.plant.Plant;
-
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public interface IWorldMap {
 
@@ -46,4 +44,6 @@ public interface IWorldMap {
     double getAverageOffspringsNumber();
 
     List<Integer> getCurrentDominantGenes();
+
+    Set<Animal> getAnimalsFromPosition(Vector2d position);
 }

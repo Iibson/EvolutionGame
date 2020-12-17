@@ -40,12 +40,12 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.jungleBounds = jungleBounds;
         this.animalStartingEnergy = animalStartingEnergy;
         this.currentDominantGenes = new ArrayList<>();
-        List<Vector2d> temp = new ArrayList<>(jungleBounds.opposite().square(jungleBounds));
-        Collections.shuffle(temp);
-        this.freeJunglePlants = new LinkedList<>(temp);
-        temp = new ArrayList<>(prepareFreeSteppesPlants());
-        Collections.shuffle(temp);
-        this.freeSteppesPlants = new LinkedList<>(temp);
+        List<Vector2d> tempList = new ArrayList<>(jungleBounds.opposite().square(jungleBounds));
+        Collections.shuffle(tempList);
+        this.freeJunglePlants = new LinkedList<>(tempList);
+        tempList = new ArrayList<>(prepareFreeSteppesPlants());
+        Collections.shuffle(tempList);
+        this.freeSteppesPlants = new LinkedList<>(tempList);
         this.plantsSpawnRatio = plantsSpawnRatio;
         this.visualiser = visualiser;
         this.dominantGenes = new HashMap<>();
@@ -94,14 +94,14 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     public void addPlants() {
-        List<Vector2d> temp = new ArrayList<>(this.freeJunglePlants);
-        Collections.shuffle(temp);
+        List<Vector2d> tempList = new ArrayList<>(this.freeJunglePlants);
+        Collections.shuffle(tempList);
         if (this.freeJunglePlants.size() != 0)
-            this.freeJunglePlants = new LinkedList<>(temp);
-        temp = new ArrayList<>(this.freeSteppesPlants);
-        Collections.shuffle(temp);
+            this.freeJunglePlants = new LinkedList<>(tempList);
+        tempList = new ArrayList<>(this.freeSteppesPlants);
+        Collections.shuffle(tempList);
         if (this.freeSteppesPlants.size() != 0)
-            this.freeSteppesPlants = new LinkedList<>(temp);
+            this.freeSteppesPlants = new LinkedList<>(tempList);
         for (int i = 0; i < this.plantsSpawnRatio && freeJunglePlants.size() >= 1; i++)
             addPlantsToArea(freeJunglePlants);
         for (int i = 0; i < this.plantsSpawnRatio && freeSteppesPlants.size() >= 1; i++)
@@ -165,17 +165,17 @@ public class WorldMap implements IWorldMap, IElementObserver {
         tempAnimalSet.add(animal);
         animals.put(animal.getPosition(), tempAnimalSet);
         this.allAnimalsEnergy += animal.getEnergy();
-        Integer temp = dominantGenes.get(animal.getGenes());
-        if (temp == null) {
-            temp = 1;
-            dominantGenes.put(animal.getGenes(), temp);
+        Integer tempGenesNumber = dominantGenes.get(animal.getGenes());
+        if (tempGenesNumber == null) {
+            tempGenesNumber = 1;
+            dominantGenes.put(animal.getGenes(), tempGenesNumber);
         } else {
             dominantGenes.remove(animal.getGenes());
-            temp++;
-            dominantGenes.put(animal.getGenes(), temp);
+            tempGenesNumber++;
+            dominantGenes.put(animal.getGenes(), tempGenesNumber);
         }
-        if (temp > currentDominantGenesNumber) {
-            currentDominantGenesNumber = temp;
+        if (tempGenesNumber > currentDominantGenesNumber) {
+            currentDominantGenesNumber = tempGenesNumber;
             currentDominantGenes = animal.getGenes();
         }
     }
@@ -258,9 +258,9 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.numberOfAllOffsprings -= element.getOffsprings().size();
         if (animals.get(position).isEmpty())
             animals.remove(position);
-        Integer temp = dominantGenes.remove(element.getGenes());
-        dominantGenes.put(element.getGenes(), temp - 1);
-        if (temp.equals(currentDominantGenesNumber))
+        Integer tempGenesNumber = dominantGenes.remove(element.getGenes());
+        dominantGenes.put(element.getGenes(), tempGenesNumber - 1);
+        if (tempGenesNumber.equals(currentDominantGenesNumber))
             currentDominantGenesNumber--;
     }
 
@@ -285,6 +285,10 @@ public class WorldMap implements IWorldMap, IElementObserver {
                 return animals.get(vector2d).iterator().next();
         }
         return null;
+    }
+
+    public Set<Animal> getAnimalsFromPosition(Vector2d position) {
+        return this.animals.get(position);
     }
 
 

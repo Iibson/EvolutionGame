@@ -106,10 +106,19 @@ public class MapVisualiser implements IElementObserver {
 
     public void showDominantGenes() {
         List<Integer> genes = map.getCurrentDominantGenes();
-        mapElements.forEach((vector2d, rectangle) -> {
-            if (rectangle.getFill() != Color.SANDYBROWN && rectangle.getFill() != Color.LIGHTGREEN && rectangle.getFill() != Color.GREEN)
-                if (genes.equals(map.getAnimal(vector2d).getGenes()))
-                    rectangle.setFill(Color.YELLOW);
-        });
+        Animal tempAnimal;
+        Iterator iterator;
+        for (Vector2d vector2d : mapElements.keySet()) {
+            if (mapElements.get(vector2d).getFill() != Color.SANDYBROWN && mapElements.get(vector2d).getFill() != Color.LIGHTGREEN && mapElements.get(vector2d).getFill() != Color.GREEN) {
+                iterator = map.getAnimalsFromPosition(vector2d).iterator();
+                while (iterator.hasNext()) {
+                    tempAnimal = (Animal) iterator.next();
+                    if (tempAnimal.getGenes().equals(genes)) {
+                        mapElements.get(vector2d).setFill(Color.YELLOW);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
