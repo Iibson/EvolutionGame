@@ -29,20 +29,21 @@ class SimulationEngine {
         this.world = new WorldMap(mapBounds, jungleBounds, plantEnergy, startEnergy, plantSpawnRatio, moveEnergy, mapVisualiser);
         mapVisualiser.addIWorldMap(this.world);
         Random random = new Random();
-        List<Integer> genes = new ArrayList<>();
+        List<Integer> genes;
         this.year = 0;
         this.saveTime = saveTime;
-        for (int i = 0; i < 8; i++)
-            genes.add(i);
-        for (int i = 8; i < 32; i++)
-            genes.add(random.nextInt(8));
         Set<Vector2d> tempAnimalPositionsSet = new HashSet<>();
         Vector2d tempVector;
-        for (int i = 0; i < numberOfStartingAnimals; i++) {
+        for (int j = 0; j < numberOfStartingAnimals; j++) {
             tempVector = new Vector2d(random.nextInt(width) - width / 2, random.nextInt(height) - height / 2);
             while (tempAnimalPositionsSet.contains(tempVector))
                 tempVector = new Vector2d(random.nextInt(width) - width / 2, random.nextInt(height) - height / 2);
             tempAnimalPositionsSet.add(tempVector);
+            genes = new ArrayList<>();
+            for (int i = 0; i < 8; i++)
+                genes.add(i);
+            for (int i = 8; i < 32; i++)
+                genes.add(random.nextInt(8));
             new Animal(world, tempVector, MapDirection.values()[random.nextInt(8)], genes, startEnergy);
         }
         try {

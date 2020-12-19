@@ -116,15 +116,19 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
     private List<Integer> generateOffspringGenes(Animal mate) {
         List<Integer> offspringGenes = new ArrayList<>();
         int[] check = {0, 0, 0, 0, 0, 0, 0, 0};
-        for (int i = 0; i < 21; i++) {
-            int temp = geneGenerator.nextInt(32);
-            offspringGenes.add(this.genes.get(temp));
-            check[this.genes.get(temp)]++;
+        int bound = geneGenerator.nextInt(30);
+        for (int i = 0; i < bound; i++) {
+            offspringGenes.add(this.genes.get(i));
+            check[this.genes.get(i)]++;
         }
-        for (int i = 21; i < 32; i++) {
-            int temp = geneGenerator.nextInt(32);
-            offspringGenes.add((mate.getGenes().get(temp)));
-            check[mate.getGenes().get(temp)]++;
+        int bound2 = geneGenerator.nextInt(31 - bound) + bound;
+        for (int i = bound; i < bound2; i++) {
+            offspringGenes.add((mate.getGenes().get(i)));
+            check[mate.getGenes().get(i)]++;
+        }
+        for (int i = bound2; i < 32; i++) {
+            offspringGenes.add((mate.getGenes().get(i)));
+            check[mate.getGenes().get(i)]++;
         }
         for (int i = 0; i < 8; i++) {
             if (check[i] == 0) {
