@@ -28,7 +28,7 @@ public class App extends Application implements ISimulationObserver {
         Scene scene = new Scene(engine.draw(), 1480, 1000);
         window.setScene(scene);
         window.show();
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(8), event -> engine.simulate()));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(40), event -> engine.simulate()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }

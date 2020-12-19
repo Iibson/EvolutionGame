@@ -1,9 +1,639 @@
  Years: 0,
- Animals: 10,
+ Animals: 100,
  Plants: 0,
- Average Energy: 20,
+ Average Energy: 100,
  Average Life Span: 0,
  Average Children: 0
- Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7]
- Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7]
+ Current Dominant Genes: [0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7]
+ Dominant Genes: [0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7]
+
+ Years: 0,
+ Animals: 100,
+ Plants: 0,
+ Average Energy: 100,
+ Average Life Span: 0,
+ Average Children: 0
+ Current Dominant Genes: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7]
+
+ Years: 1000,
+ Animals: 400,
+ Plants: 1159,
+ Average Energy: 97,
+ Average Life Span: 186,
+ Average Children: 3
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7]
+
+ Years: 1000,
+ Animals: 361,
+ Plants: 1086,
+ Average Energy: 99,
+ Average Life Span: 200,
+ Average Children: 3
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7]
+
+ Years: 2000,
+ Animals: 277,
+ Plants: 1311,
+ Average Energy: 98,
+ Average Life Span: 188,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7]
+
+ Years: 2000,
+ Animals: 308,
+ Plants: 1192,
+ Average Energy: 86,
+ Average Life Span: 202,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7]
+
+ Years: 3000,
+ Animals: 296,
+ Plants: 1073,
+ Average Energy: 75,
+ Average Life Span: 206,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7]
+
+ Years: 3000,
+ Animals: 308,
+ Plants: 1158,
+ Average Energy: 83,
+ Average Life Span: 193,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7]
+
+ Years: 4000,
+ Animals: 312,
+ Plants: 948,
+ Average Energy: 75,
+ Average Life Span: 212,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 4000,
+ Animals: 300,
+ Plants: 1040,
+ Average Energy: 87,
+ Average Life Span: 194,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 5000,
+ Animals: 302,
+ Plants: 914,
+ Average Energy: 77,
+ Average Life Span: 216,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 5000,
+ Animals: 283,
+ Plants: 1287,
+ Average Energy: 94,
+ Average Life Span: 198,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 6000,
+ Animals: 305,
+ Plants: 891,
+ Average Energy: 69,
+ Average Life Span: 219,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 6000,
+ Animals: 298,
+ Plants: 1198,
+ Average Energy: 85,
+ Average Life Span: 201,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 7000,
+ Animals: 302,
+ Plants: 923,
+ Average Energy: 70,
+ Average Life Span: 224,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 7000,
+ Animals: 316,
+ Plants: 1019,
+ Average Energy: 80,
+ Average Life Span: 202,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 8000,
+ Animals: 297,
+ Plants: 959,
+ Average Energy: 74,
+ Average Life Span: 228,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 8000,
+ Animals: 290,
+ Plants: 1141,
+ Average Energy: 83,
+ Average Life Span: 203,
+ Average Children: 6
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 9000,
+ Animals: 315,
+ Plants: 852,
+ Average Energy: 69,
+ Average Life Span: 231,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 9000,
+ Animals: 298,
+ Plants: 1109,
+ Average Energy: 84,
+ Average Life Span: 204,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 10000,
+ Animals: 319,
+ Plants: 785,
+ Average Energy: 67,
+ Average Life Span: 232,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 10000,
+ Animals: 310,
+ Plants: 958,
+ Average Energy: 72,
+ Average Life Span: 205,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 11000,
+ Animals: 307,
+ Plants: 899,
+ Average Energy: 72,
+ Average Life Span: 235,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 11000,
+ Animals: 349,
+ Plants: 954,
+ Average Energy: 77,
+ Average Life Span: 208,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 12000,
+ Animals: 333,
+ Plants: 862,
+ Average Energy: 68,
+ Average Life Span: 236,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 12000,
+ Animals: 279,
+ Plants: 1021,
+ Average Energy: 85,
+ Average Life Span: 209,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 13000,
+ Animals: 299,
+ Plants: 882,
+ Average Energy: 75,
+ Average Life Span: 238,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 13000,
+ Animals: 322,
+ Plants: 1039,
+ Average Energy: 86,
+ Average Life Span: 210,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 14000,
+ Animals: 296,
+ Plants: 917,
+ Average Energy: 82,
+ Average Life Span: 239,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 14000,
+ Animals: 298,
+ Plants: 1058,
+ Average Energy: 74,
+ Average Life Span: 211,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 15000,
+ Animals: 316,
+ Plants: 851,
+ Average Energy: 71,
+ Average Life Span: 241,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 15000,
+ Animals: 322,
+ Plants: 950,
+ Average Energy: 79,
+ Average Life Span: 213,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 16000,
+ Animals: 317,
+ Plants: 868,
+ Average Energy: 68,
+ Average Life Span: 241,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 16000,
+ Animals: 299,
+ Plants: 985,
+ Average Energy: 82,
+ Average Life Span: 214,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 17000,
+ Animals: 302,
+ Plants: 890,
+ Average Energy: 70,
+ Average Life Span: 242,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 17000,
+ Animals: 282,
+ Plants: 985,
+ Average Energy: 76,
+ Average Life Span: 215,
+ Average Children: 6
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 18000,
+ Animals: 296,
+ Plants: 882,
+ Average Energy: 66,
+ Average Life Span: 242,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 18000,
+ Animals: 284,
+ Plants: 1012,
+ Average Energy: 88,
+ Average Life Span: 216,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 19000,
+ Animals: 287,
+ Plants: 917,
+ Average Energy: 80,
+ Average Life Span: 243,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 19000,
+ Animals: 331,
+ Plants: 929,
+ Average Energy: 80,
+ Average Life Span: 216,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 20000,
+ Animals: 281,
+ Plants: 898,
+ Average Energy: 76,
+ Average Life Span: 243,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 20000,
+ Animals: 275,
+ Plants: 1089,
+ Average Energy: 81,
+ Average Life Span: 217,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 21000,
+ Animals: 302,
+ Plants: 902,
+ Average Energy: 69,
+ Average Life Span: 244,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 21000,
+ Animals: 299,
+ Plants: 1001,
+ Average Energy: 75,
+ Average Life Span: 218,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 22000,
+ Animals: 327,
+ Plants: 846,
+ Average Energy: 69,
+ Average Life Span: 244,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 22000,
+ Animals: 301,
+ Plants: 1008,
+ Average Energy: 79,
+ Average Life Span: 219,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 23000,
+ Animals: 289,
+ Plants: 956,
+ Average Energy: 78,
+ Average Life Span: 245,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 23000,
+ Animals: 304,
+ Plants: 956,
+ Average Energy: 75,
+ Average Life Span: 219,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 24000,
+ Animals: 304,
+ Plants: 894,
+ Average Energy: 62,
+ Average Life Span: 246,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 24000,
+ Animals: 267,
+ Plants: 964,
+ Average Energy: 75,
+ Average Life Span: 220,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 25000,
+ Animals: 303,
+ Plants: 896,
+ Average Energy: 67,
+ Average Life Span: 246,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 25000,
+ Animals: 287,
+ Plants: 1061,
+ Average Energy: 89,
+ Average Life Span: 221,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 26000,
+ Animals: 282,
+ Plants: 895,
+ Average Energy: 73,
+ Average Life Span: 247,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 26000,
+ Animals: 268,
+ Plants: 1024,
+ Average Energy: 91,
+ Average Life Span: 221,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 27000,
+ Animals: 276,
+ Plants: 976,
+ Average Energy: 81,
+ Average Life Span: 247,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 27000,
+ Animals: 313,
+ Plants: 962,
+ Average Energy: 80,
+ Average Life Span: 221,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 28000,
+ Animals: 324,
+ Plants: 799,
+ Average Energy: 73,
+ Average Life Span: 247,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 28000,
+ Animals: 305,
+ Plants: 912,
+ Average Energy: 78,
+ Average Life Span: 222,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 29000,
+ Animals: 295,
+ Plants: 867,
+ Average Energy: 77,
+ Average Life Span: 247,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 29000,
+ Animals: 289,
+ Plants: 1035,
+ Average Energy: 90,
+ Average Life Span: 222,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 30000,
+ Animals: 306,
+ Plants: 897,
+ Average Energy: 71,
+ Average Life Span: 247,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 30000,
+ Animals: 309,
+ Plants: 924,
+ Average Energy: 75,
+ Average Life Span: 223,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 31000,
+ Animals: 321,
+ Plants: 907,
+ Average Energy: 67,
+ Average Life Span: 248,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 31000,
+ Animals: 310,
+ Plants: 942,
+ Average Energy: 73,
+ Average Life Span: 223,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 32000,
+ Animals: 304,
+ Plants: 827,
+ Average Energy: 77,
+ Average Life Span: 248,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 32000,
+ Animals: 277,
+ Plants: 992,
+ Average Energy: 88,
+ Average Life Span: 224,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 33000,
+ Animals: 278,
+ Plants: 899,
+ Average Energy: 85,
+ Average Life Span: 248,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 33000,
+ Animals: 334,
+ Plants: 888,
+ Average Energy: 72,
+ Average Life Span: 224,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 34000,
+ Animals: 326,
+ Plants: 883,
+ Average Energy: 65,
+ Average Life Span: 249,
+ Average Children: 3
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 34000,
+ Animals: 302,
+ Plants: 978,
+ Average Energy: 80,
+ Average Life Span: 224,
+ Average Children: 5
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 4, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+ Years: 35000,
+ Animals: 294,
+ Plants: 921,
+ Average Energy: 71,
+ Average Life Span: 249,
+ Average Children: 4
+ Current Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7]
 
