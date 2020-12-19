@@ -11,7 +11,6 @@ import java.util.*;
 
 
 public class AnimalTest {
-    private Random random = new Random();
     private Vector2d mapBounds = new Vector2d((30 / 2), (30 / 2));
     private Vector2d jungleBounds = new Vector2d((30 / 2), (30 / 2));
     private WorldMap testMap = new WorldMap(mapBounds, jungleBounds, 0, 10, 2, 1, new MapVisualiser(mapBounds, jungleBounds, 0));
@@ -33,7 +32,8 @@ public class AnimalTest {
         Animal a1 = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes, 10);
         Animal a2 = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 10);
         testMap.reproduceAnimals();
-        Assert.assertEquals(3, testMap.getAnimalsFromPosition(new Vector2d(1, 1)).size());
+        Assert.assertEquals(2, testMap.getAnimalsFromPosition(new Vector2d(1, 1)).size());
+        Assert.assertEquals(3, testMap.getCurrentNumberOfAnimals());
         Iterator iterator = testMap.getAnimalsFromPosition(new Vector2d(1, 1)).iterator();
         Animal temp;
         while (iterator.hasNext()) {
@@ -63,8 +63,15 @@ public class AnimalTest {
         new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000);
         new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000);
         new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000);
+        for(int i = 0; i < 3; i ++){
+            for(int j = 0; j < 3; j ++){
+                if(i == 1 && j == 1)
+                    continue;
+                new Animal(testMap, new Vector2d(i, j), MapDirection.NORTH, genes1, 1000);
+            }
+        }
         testMap.reproduceAnimals();
         testMap.reproduceAnimals();
-        Assert.assertEquals(3, testAnimal.getNumberOfDescendant(new HashSet<>()));
+        Assert.assertEquals(3, testAnimal.getNumberOfDescendantAfterNYears(new HashSet<>(), 10, 0));
     }
 }

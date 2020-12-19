@@ -97,7 +97,7 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
     }
 
     public void reproduce(Animal mate) {
-        Animal animal = new Animal(this.map, this.position, this.mapDirection, generateOffspringGenes(mate), generateOffspringEnergy(mate));
+        Animal animal = new Animal(this.map, map.generateFreePositionNear(this.position), MapDirection.values()[geneGenerator.nextInt(8)], generateOffspringGenes(mate), generateOffspringEnergy(mate));
         addOffspring(animal);
         mate.addOffspring(animal);
     }
@@ -171,13 +171,15 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
         observers.remove(observer);
     }
 
-    public long getNumberOfDescendant(Set<Animal> animals){
+    public long getNumberOfDescendantAfterNYears(Set<Animal> animals, int n, int begYears){
         long i = 0;
         for (Animal offspring : offsprings) {
+            if (begYears - offspring.getYears() > n)
+                continue;
             i += 1;
             if(!animals.contains(offspring)){
                 animals.add(offspring);
-                i += offspring.getNumberOfDescendant(animals);
+                i += offspring.getNumberOfDescendantAfterNYears(animals, n, begYears);
             }
         }
         return i;
@@ -192,8 +194,16 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
     }
 
     private Vector2d checkBounds(Vector2d position) {
-        if (!map.checkBounds(position))
+        if (map.checkBounds(position))
             return position;
         return position.subtract(this.mapDirection.toUnitVector()).opposite();
+    }
+
+    public int getNumberOfOffspringsAfterNYears(int n) {
+        int z = 0;
+        for (Animal offspring : this.offsprings)
+            if (this.years - offspring.getYears() <= n)
+                z++;
+        return z;
     }
 }

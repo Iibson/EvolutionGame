@@ -4,19 +4,14 @@ import EvolutionGame.data.MapDirection;
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.map.IWorldMap;
 import EvolutionGame.map.WorldMap;
-import EvolutionGame.map.visualisation.IMapVisualiserObserver;
 import EvolutionGame.map.visualisation.MapVisualiser;
 import EvolutionGame.mapElement.animal.Animal;
-import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
@@ -41,8 +36,15 @@ class SimulationEngine {
             genes.add(i);
         for (int i = 8; i < 32; i++)
             genes.add(random.nextInt(8));
-        for (int i = 0; i < numberOfStartingAnimals; i++)
-            new Animal(world, new Vector2d(random.nextInt(width) - width / 2, random.nextInt(height) - height / 2), MapDirection.NORTH, genes, startEnergy);
+        Set<Vector2d> tempAnimalPositionsSet = new HashSet<>();
+        Vector2d tempVector;
+        for (int i = 0; i < numberOfStartingAnimals; i++) {
+            tempVector = new Vector2d(random.nextInt(width) - width / 2, random.nextInt(height) - height / 2);
+            while (tempAnimalPositionsSet.contains(tempVector))
+                tempVector = new Vector2d(random.nextInt(width) - width / 2, random.nextInt(height) - height / 2);
+            tempAnimalPositionsSet.add(tempVector);
+            new Animal(world, tempVector, MapDirection.values()[random.nextInt(8)], genes, startEnergy);
+        }
         try {
             File file = new File("simulation.txt");
             if (file.delete())
@@ -66,18 +68,19 @@ class SimulationEngine {
     }
 
     String getInfo() {
-        return "Years: " + this.year +
+        return " Years: " + this.year +
                 ",\n Animals: " + this.world.getCurrentNumberOfAnimals() +
                 ",\n Plants: " + this.world.getCurrentNumberOfPlants() +
                 ",\n Average Energy: " + (int) this.world.getAverageEnergy() +
                 ",\n Average Life Span: " + (int) this.world.getAverageYears() +
                 ",\n Average Children: " + (int) this.world.getAverageOffspringsNumber() +
                 "\n Current Dominant Genes: " + this.world.getCurrentDominantGenes() +
+                "\n Dominant Genes: " + this.world.getCurrentDominantGenesThroughAllYears() +
                 "\n\n";
     }
 
-    String getInfoAboutChosenAnimal() {
-        return this.mapVisualiser.getInfoAboutChosenAnimal();
+    String getInfoAboutChosenAnimal(int n) {
+        return this.mapVisualiser.getInfoAboutChosenAnimal(n, this.year);
     }
 
     private void writeToFileInfo() {
@@ -88,12 +91,11 @@ class SimulationEngine {
         }
     }
 
-
     void showDominantGenes() {
         mapVisualiser.showDominantGenes();
     }
 
-    Map<Vector2d, Rectangle> draw(){
+    Map<Vector2d, Rectangle> draw() {
         return mapVisualiser.draw();
     }
 }

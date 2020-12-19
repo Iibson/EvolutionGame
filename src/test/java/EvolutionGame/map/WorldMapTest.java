@@ -83,19 +83,12 @@ public class WorldMapTest {
             genes1.add(1);
         for (int i = 0; i < 32; i++)
             genes2.add(2);
-        Animal animal = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10);
-        Animal animal1 = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5);
-        Animal animal2 = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes1, 10);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes1, 10);
         map.reproduceAnimals();
-        Assert.assertEquals(map.getAnimals().get(new Vector2d(0, 1)).size(), 4);
-        map.getAnimals().get(new Vector2d(0, 1)).remove(animal);
-        map.getAnimals().get(new Vector2d(0, 1)).remove(animal1);
-        map.getAnimals().get(new Vector2d(0, 1)).remove(animal2);
-        Animal animal3 = map.getAnimals().get(new Vector2d(0, 1)).iterator().next();
-        Assert.assertEquals(animal3.getGenes().size(), 32);
-        for (int i = 0; i < 8; i++) {
-            Assert.assertTrue(animal3.getGenes().contains(i));
-        }
+        Assert.assertEquals(map.getAnimals().get(new Vector2d(0, 1)).size(), 3);
+        Assert.assertEquals(map.getCurrentNumberOfAnimals(), 4);
     }
 
     @Test
@@ -136,7 +129,7 @@ public class WorldMapTest {
     }
 
     @Test
-    public void testCurrentDominantGenes(){
+    public void testCurrentDominantGenes() {
         mapVisualiser.addIWorldMap(map);
         List<Integer> genes = new ArrayList<>();
         List<Integer> genes2 = new ArrayList<>();

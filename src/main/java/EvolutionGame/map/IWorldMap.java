@@ -7,12 +7,6 @@ import java.util.Set;
 
 public interface IWorldMap {
 
-    //    Map<Vector2d, Plant> getPlants();
-//
-//    Vector2d getJungleBounds();
-//
-//    Map<Vector2d, Set<Animal>> getAnimals();
-//
     Integer getAnimalStartingEnergy();
 
     int getCurrentNumberOfAnimals();
@@ -23,8 +17,6 @@ public interface IWorldMap {
 
     void moveAnimals();
 
-    void positionChanged(Animal animal, Vector2d oldPosition);
-
     void eatPlants();
 
     void reproduceAnimals();
@@ -32,6 +24,8 @@ public interface IWorldMap {
     void spentYear();
 
     boolean checkBounds(Vector2d position);
+
+    List<Integer> getCurrentDominantGenesThroughAllYears();
 
     void place(Animal animal);
 
@@ -46,4 +40,6 @@ public interface IWorldMap {
     List<Integer> getCurrentDominantGenes();
 
     Set<Animal> getAnimalsFromPosition(Vector2d position);
+
+    Vector2d generateFreePositionNear(Vector2d position);
 }

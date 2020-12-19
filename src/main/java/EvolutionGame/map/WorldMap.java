@@ -2,7 +2,6 @@ package EvolutionGame.map;
 
 import EvolutionGame.data.Vector2d;
 import EvolutionGame.mapElement.IElementObserver;
-import javafx.scene.paint.Color;
 import javafx.util.Pair;
 import EvolutionGame.mapElement.animal.Animal;
 import EvolutionGame.mapElement.plant.Plant;
@@ -32,6 +31,9 @@ public class WorldMap implements IWorldMap, IElementObserver {
     private final HashMap<List<Integer>, Integer> dominantGenes;
     private List<Integer> currentDominantGenes;
     private Integer currentDominantGenesNumber = 0;
+    private final HashMap<List<Integer>, Integer> dominantGenesThroughAllYears;
+    private List<Integer> currentDominantGenesThroughAllYears;
+    private Integer currentDominantGenesNumberThroughAllYears = 0;
 
     public WorldMap(Vector2d mapBounds, Vector2d jungleBounds, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio, Integer moveEnergy, IElementObserver visualiser) {
         this.moveEnergy = moveEnergy;
@@ -40,6 +42,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.jungleBounds = jungleBounds;
         this.animalStartingEnergy = animalStartingEnergy;
         this.currentDominantGenes = new ArrayList<>();
+        this.currentDominantGenesThroughAllYears = new ArrayList<>();
         List<Vector2d> tempList = new ArrayList<>(jungleBounds.opposite().square(jungleBounds));
         Collections.shuffle(tempList);
         this.freeJunglePlants = new LinkedList<>(tempList);
@@ -49,6 +52,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.plantsSpawnRatio = plantsSpawnRatio;
         this.visualiser = visualiser;
         this.dominantGenes = new HashMap<>();
+        this.dominantGenesThroughAllYears = new HashMap<>();
     }
 
     public int getCurrentNumberOfAnimals() {
@@ -76,7 +80,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     public boolean checkBounds(Vector2d position) {
-        return !this.mapBounds.opposite().precedes(position) || !this.mapBounds.follows(position);
+        return this.mapBounds.opposite().precedes(position) && this.mapBounds.follows(position);
     }
 
     private boolean isInJungle(Vector2d position) {
@@ -166,6 +170,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         animals.put(animal.getPosition(), tempAnimalSet);
         this.allAnimalsEnergy += animal.getEnergy();
         Integer tempGenesNumber = dominantGenes.get(animal.getGenes());
+        Integer tempGenesNumberThroughYears = dominantGenesThroughAllYears.get(animal.getGenes());
         if (tempGenesNumber == null) {
             tempGenesNumber = 1;
             dominantGenes.put(animal.getGenes(), tempGenesNumber);
@@ -177,6 +182,18 @@ public class WorldMap implements IWorldMap, IElementObserver {
         if (tempGenesNumber > currentDominantGenesNumber) {
             currentDominantGenesNumber = tempGenesNumber;
             currentDominantGenes = animal.getGenes();
+        }
+        if (tempGenesNumberThroughYears == null) {
+            tempGenesNumberThroughYears = 1;
+            dominantGenesThroughAllYears.put(animal.getGenes(), tempGenesNumberThroughYears);
+        } else {
+            dominantGenesThroughAllYears.remove(animal.getGenes());
+            tempGenesNumberThroughYears++;
+            dominantGenesThroughAllYears.put(animal.getGenes(), tempGenesNumberThroughYears);
+        }
+        if (tempGenesNumberThroughYears > currentDominantGenesNumberThroughAllYears) {
+            currentDominantGenesNumberThroughAllYears = tempGenesNumberThroughYears;
+            currentDominantGenesThroughAllYears = animal.getGenes();
         }
     }
 
@@ -308,5 +325,29 @@ public class WorldMap implements IWorldMap, IElementObserver {
         if (this.currentNumberOfAnimals == 0)
             return 0;
         return this.numberOfAllOffsprings / this.currentNumberOfAnimals;
+    }
+
+    public List<Integer> getCurrentDominantGenesThroughAllYears(){
+        return Collections.unmodifiableList(this.currentDominantGenesThroughAllYears);
+    }
+
+    public Vector2d generateFreePositionNear(Vector2d position){
+        List<Vector2d> nearPositions = new ArrayList<>();
+        for(int i = 0; i < 3; i ++){
+            for(int j = 0; j < 3; j ++){
+                if(i == position.x && j == position.y)
+                    continue;
+                nearPositions.add(new Vector2d(i, j));
+            }
+        }
+        Collections.shuffle(nearPositions);
+        Queue<Vector2d> queue = new LinkedList<>(nearPositions);
+        Vector2d tempVector;
+        while (!queue.isEmpty()){
+            tempVector = queue.poll();
+            if(this.animals.get(tempVector) == null && this.plants.get(tempVector) == null && checkBounds(tempVector))
+                return tempVector;
+        }
+        return position;
     }
 }
