@@ -43,7 +43,7 @@ public class WorldMapTest {
         for (int i = 0; i < 33; i++) {
             genes.add(random.nextInt(8));
         }
-        Animal animal = new Animal(map, new Vector2d(1, 1), MapDirection.NORTH, genes, 10);
+        Animal animal = new Animal(map, new Vector2d(1, 1), MapDirection.NORTH, genes, 10, 0);
         animal.move();
         animal.move();
         animal.move();
@@ -61,9 +61,9 @@ public class WorldMapTest {
         }
         map.addPlants();
         Plant tempPlant = map.getPlants().get(map.getPlants().keySet().iterator().next());
-        Animal animal = new Animal(map, tempPlant.getPosition().subtract(new Vector2d(0, 1)), MapDirection.NORTH, genes, 10);
-        Animal animal1 = new Animal(map, tempPlant.getPosition().subtract(new Vector2d(0, 1)), MapDirection.NORTH, genes, 5);
-        Animal animal2 = new Animal(map, tempPlant.getPosition().subtract(new Vector2d(0, 1)), MapDirection.NORTH, genes, 10);
+        Animal animal = new Animal(map, tempPlant.getPosition().subtract(new Vector2d(0, 1)), MapDirection.NORTH, genes, 10, 0);
+        Animal animal1 = new Animal(map, tempPlant.getPosition().subtract(new Vector2d(0, 1)), MapDirection.NORTH, genes, 5, 0);
+        Animal animal2 = new Animal(map, tempPlant.getPosition().subtract(new Vector2d(0, 1)), MapDirection.NORTH, genes, 10, 0);
         map.moveAnimals();
         map.eatPlants();
         Assert.assertEquals(13, (int) animal.getEnergy());
@@ -83,9 +83,9 @@ public class WorldMapTest {
             genes1.add(1);
         for (int i = 0; i < 32; i++)
             genes2.add(2);
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10);
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5);
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes1, 10);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes1, 10, 0);
         map.reproduceAnimals();
         Assert.assertEquals(map.getAnimals().get(new Vector2d(0, 1)).size(), 3);
         Assert.assertEquals(map.getCurrentNumberOfAnimals(), 4);
@@ -97,15 +97,15 @@ public class WorldMapTest {
         List<Integer> genes = new ArrayList<>();
         for (int i = 0; i < 32; i++)
             genes.add(random.nextInt(8));
-        Animal animal = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10);
+        Animal animal = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
         genes.clear();
         for (int i = 0; i < 32; i++)
             genes.add(random.nextInt(8));
-        Animal animal1 = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 5);
+        Animal animal1 = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 5, 0);
         genes.clear();
         for (int i = 0; i < 32; i++)
             genes.add(random.nextInt(8));
-        Animal animal2 = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10);
+        Animal animal2 = new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
         map.moveAnimals();
         Assert.assertNotEquals(animal.getPosition(), new Vector2d(0, 1));
         Assert.assertNotEquals(animal1.getPosition(), new Vector2d(0, 1));
@@ -121,7 +121,7 @@ public class WorldMapTest {
         Vector2d jungleBounds = new Vector2d((0 / 2), (0 / 2));
         WorldMap map = new WorldMap(mapBounds, jungleBounds, 9, 10, 2, 1, mapVisualiser);
         mapVisualiser.addIWorldMap(map);
-        Animal animal = new Animal(map, new Vector2d(2, 2), MapDirection.NORTH, genes, 10);
+        Animal animal = new Animal(map, new Vector2d(2, 2), MapDirection.NORTH, genes, 10, 0);
         animal.move();
         animal.move();
         animal.move();
@@ -140,12 +140,12 @@ public class WorldMapTest {
             genes1.add(1);
         for (int i = 0; i < 32; i++)
             genes2.add(2);
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10);
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10);
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5);
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5);
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5);
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes1, 10);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes2, 5, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes1, 10, 0);
         Assert.assertEquals(genes2, map.getCurrentDominantGenes());
         map.moveAnimals();
         map.moveAnimals();
@@ -154,9 +154,46 @@ public class WorldMapTest {
         map.moveAnimals();
         map.moveAnimals();
         map.moveAnimals();
-        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 5);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 5, 0);
         Assert.assertEquals(map.getCurrentNumberOfAnimals(), 4);
         Assert.assertEquals(genes, map.getCurrentDominantGenes());
     }
+
+    @Test
+    public void testCurrentAverageEnergy(){
+        mapVisualiser.addIWorldMap(map);
+        List<Integer> genes = new ArrayList<>();
+        for (int i = 0; i < 32; i++)
+            genes.add(0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 4, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 4, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 4, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
+        map.moveAnimals();
+        Assert.assertEquals(6, map.getAverageEnergy(), 0.0);
+    }
+
+    @Test
+    public void testAverageLifeSpan(){
+        mapVisualiser.addIWorldMap(map);
+        List<Integer> genes = new ArrayList<>();
+        for (int i = 0; i < 32; i++)
+            genes.add(0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 4, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 4, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 4, 0);
+        new Animal(map, new Vector2d(0, 1), MapDirection.NORTH, genes, 10, 0);
+        map.moveAnimals();
+        map.moveAnimals();
+        map.moveAnimals();
+        map.moveAnimals();
+        map.moveAnimals();
+        Assert.assertEquals(4, map.getAverageYears(), 0.0);
+    }
+
 
 }

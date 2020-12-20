@@ -17,7 +17,6 @@ public class MapVisualiser implements IElementObserver {
     private IWorldMap map;
     private Rectangle currentlyFollowed;
     private Animal chosenAnimal;
-    private int chosenAnimalDeathDate = 0;
 
     public MapVisualiser(Vector2d mapBounds, Vector2d jungleBounds, int shift) {
         int a = (int) Math.ceil(500 / (mapBounds.x * 2));
@@ -34,7 +33,6 @@ public class MapVisualiser implements IElementObserver {
                     this.currentlyFollowed = rectangle;
                     currentlyFollowed.setFill(Color.BLUE);
                     chosenAnimal = map.getAnimal(new Vector2d((int) (rectangle.getX() - shift - 10) / a - mapBounds.x, (int) (rectangle.getY() - 10) / a - mapBounds.y));
-                    chosenAnimalDeathDate = 0;
                 }
             });
             mapElements.put(element, rectangle);
@@ -99,13 +97,11 @@ public class MapVisualiser implements IElementObserver {
     public String getInfoAboutChosenAnimal(int n, int year) {
         if (chosenAnimal == null)
             return "";
-        if(chosenAnimal.getEnergy() <= 0 && chosenAnimalDeathDate == 0)
-            chosenAnimalDeathDate = year;
-        return "Energy: " + chosenAnimal.getEnergy() +
+        return "\nEnergy: " + chosenAnimal.getEnergy() +
                 "\nNumber of Children after n years from birth: " + chosenAnimal.getNumberOfOffspringsAfterNYears(n) +
-                "\nNumber of Descendants after n years from birth: " + chosenAnimal.getNumberOfDescendantAfterNYears(new HashSet<>(), n, chosenAnimal.getYears()) +
+                "\nNumber of Descendants after n years from birth: " + chosenAnimal.getNumberOfDescendantAfterNYears(new HashSet<>(), n, chosenAnimal.getBirthDate()) +
                 "\nYears: " + chosenAnimal.getYears() +
-                "\nDied In: " + (chosenAnimal.getEnergy() <= 0 ? chosenAnimalDeathDate  : "Still Alive") +
+                "\nDied In: " + (chosenAnimal.getEnergy() <= 0 ? chosenAnimal.getBirthDate() + chosenAnimal.getYears()  : "Still Alive") +
                 "\nGenes: " + chosenAnimal.getGenes().toString();
     }
 
@@ -126,4 +122,5 @@ public class MapVisualiser implements IElementObserver {
             }
         }
     }
+
 }

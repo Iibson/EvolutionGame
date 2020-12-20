@@ -73,7 +73,7 @@ public class AppSimulation implements EventHandler {
         this.engine1ChosenAnimal.setLayoutY(740);
         this.engine1ChosenAnimal.setVisible(false);
         this.engine2ChosenAnimal.setLayoutX(200);
-        this.engine2ChosenAnimal.setLayoutY(890);
+        this.engine2ChosenAnimal.setLayoutY(865);
         this.engine2ChosenAnimal.setVisible(false);
 
         this.setNumberOfYearsChosenAnimal1.setText("set n for 1st simulation");
@@ -169,7 +169,8 @@ public class AppSimulation implements EventHandler {
                 jsonObject.get("plantSpawnRatio").getAsInt(),
                 jsonObject.get("startingAnimals").getAsInt(),
                 0,
-                1000
+                1000,
+                1
 
         );
         engine2 = new SimulationEngine(
@@ -183,7 +184,8 @@ public class AppSimulation implements EventHandler {
                 jsonObject.get("plantSpawnRatio").getAsInt(),
                 jsonObject.get("startingAnimals").getAsInt(),
                 600,
-                1000
+                1000,
+                2
 
         );
         startSimulation.setText("restartSimulation");

@@ -18,7 +18,7 @@ public class AnimalTest {
 
     @Test
     public void testToString() {
-        Assert.assertEquals(new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, temp, 5).toString(), "N");
+        Assert.assertEquals(new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, temp, 5, 0).toString(), "N");
     }
 
     @Test
@@ -29,8 +29,8 @@ public class AnimalTest {
             genes.add(0);
         for (int i = 0; i < 32; i++)
             genes1.add(1);
-        Animal a1 = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes, 10);
-        Animal a2 = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 10);
+        Animal a1 = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes, 10, 0);
+        Animal a2 = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 10, 0);
         testMap.reproduceAnimals();
         Assert.assertEquals(2, testMap.getAnimalsFromPosition(new Vector2d(1, 1)).size());
         Assert.assertEquals(3, testMap.getCurrentNumberOfAnimals());
@@ -59,15 +59,15 @@ public class AnimalTest {
             genes.add(0);
         for (int i = 0; i < 32; i++)
             genes1.add(1);
-        Animal testAnimal = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes, 1000);
-        new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000);
-        new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000);
-        new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000);
+        Animal testAnimal = new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes, 1000, 0);
+        new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000, 0);
+        new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000, 0);
+        new Animal(testMap, new Vector2d(1, 1), MapDirection.NORTH, genes1, 1000, 0);
         for(int i = 0; i < 3; i ++){
             for(int j = 0; j < 3; j ++){
                 if(i == 1 && j == 1)
                     continue;
-                new Animal(testMap, new Vector2d(i, j), MapDirection.NORTH, genes1, 1000);
+                new Animal(testMap, new Vector2d(i, j), MapDirection.NORTH, genes1, 1000, 0);
             }
         }
         testMap.reproduceAnimals();

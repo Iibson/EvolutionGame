@@ -34,6 +34,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
     private final HashMap<List<Integer>, Integer> dominantGenesThroughAllYears;
     private List<Integer> currentDominantGenesThroughAllYears;
     private Integer currentDominantGenesNumberThroughAllYears = 0;
+    private int year = 0;
 
     public WorldMap(Vector2d mapBounds, Vector2d jungleBounds, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio, Integer moveEnergy, IElementObserver visualiser) {
         this.moveEnergy = moveEnergy;
@@ -134,7 +135,6 @@ public class WorldMap implements IWorldMap, IElementObserver {
                 .collect(Collectors.toList())
                 .forEach(animal -> {
                     if (animal.move()) {
-                        this.allAnimalYearsLived++;
                         animal.subtractEnergy(this.moveEnergy);
                         this.allAnimalsEnergy -= this.moveEnergy;
                     }
@@ -262,7 +262,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         }
         potentialParents.forEach(pair -> {
             this.allAnimalsEnergy -= pair.getKey().getEnergy() + pair.getValue().getEnergy();
-            pair.getKey().reproduce(pair.getValue());
+            pair.getKey().reproduce(pair.getValue(), this.year);
             this.allAnimalsEnergy += pair.getKey().getEnergy() + pair.getValue().getEnergy();
             this.numberOfAllOffsprings += 2;
         });
@@ -272,6 +272,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         animals.get(position).remove(element);
         this.currentNumberOfAnimals--;
         this.numberOfDeadAnimals++;
+        this.allAnimalYearsLived += element.getYears();
         this.numberOfAllOffsprings -= element.getOffsprings().size();
         if (animals.get(position).isEmpty())
             animals.remove(position);
@@ -290,6 +291,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         this.moveAnimals();
         this.eatPlants();
         this.reproduceAnimals();
+        this.year++;
     }
 
     public List<Integer> getCurrentDominantGenes() {
@@ -297,8 +299,8 @@ public class WorldMap implements IWorldMap, IElementObserver {
     }
 
     public Animal getAnimal(Vector2d vector2d) {
-        if(animals.get(vector2d) != null){
-            if(animals.get(vector2d).iterator().hasNext())
+        if (animals.get(vector2d) != null) {
+            if (animals.get(vector2d).iterator().hasNext())
                 return animals.get(vector2d).iterator().next();
         }
         return null;
@@ -327,15 +329,15 @@ public class WorldMap implements IWorldMap, IElementObserver {
         return this.numberOfAllOffsprings / this.currentNumberOfAnimals;
     }
 
-    public List<Integer> getCurrentDominantGenesThroughAllYears(){
+    public List<Integer> getCurrentDominantGenesThroughAllYears() {
         return Collections.unmodifiableList(this.currentDominantGenesThroughAllYears);
     }
 
-    public Vector2d generateFreePositionNear(Vector2d position){
+    public Vector2d generateFreePositionNear(Vector2d position) {
         List<Vector2d> nearPositions = new ArrayList<>();
-        for(int i = 0; i < 3; i ++){
-            for(int j = 0; j < 3; j ++){
-                if(i == position.x && j == position.y)
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (i == position.x && j == position.y)
                     continue;
                 nearPositions.add(new Vector2d(i, j));
             }
@@ -343,9 +345,9 @@ public class WorldMap implements IWorldMap, IElementObserver {
         Collections.shuffle(nearPositions);
         Queue<Vector2d> queue = new LinkedList<>(nearPositions);
         Vector2d tempVector;
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             tempVector = queue.poll();
-            if(this.animals.get(tempVector) == null && this.plants.get(tempVector) == null && checkBounds(tempVector))
+            if (this.animals.get(tempVector) == null && this.plants.get(tempVector) == null && checkBounds(tempVector))
                 return tempVector;
         }
         return position;

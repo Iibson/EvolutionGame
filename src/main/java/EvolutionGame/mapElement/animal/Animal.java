@@ -7,7 +7,7 @@ import EvolutionGame.data.MapDirection;
 
 import java.util.*;
 
-public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/mapie chodzi o to aby w setach animale nie znikały
+public class Animal {
     private MapDirection mapDirection;
     private Vector2d position;
     private final IWorldMap map;
@@ -18,8 +18,9 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
     private int years = 0;
     private List<Animal> offsprings = new ArrayList<>();
     private long id;
+    private int birthDate;
 
-    public Animal(IWorldMap map, Vector2d position, MapDirection mapDirection, List<Integer> genes, Integer energy) {
+    public Animal(IWorldMap map, Vector2d position, MapDirection mapDirection, List<Integer> genes, Integer energy, int birthDate) {
         this.map = map;
         this.position = position;
         this.mapDirection = mapDirection;
@@ -28,10 +29,15 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
         this.energy = energy;
         map.place(this);
         this.id = geneGenerator.nextLong();
+        this.birthDate = birthDate;
     }
 
     public Vector2d getPosition() {
         return this.position;
+    }
+
+    public int getBirthDate() {
+        return birthDate;
     }
 
     private MapDirection getMapDirection() {
@@ -96,8 +102,8 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
         return this.energy > map.getAnimalStartingEnergy() / 2;
     }
 
-    public void reproduce(Animal mate) {
-        Animal animal = new Animal(this.map, map.generateFreePositionNear(this.position), MapDirection.values()[geneGenerator.nextInt(8)], generateOffspringGenes(mate), generateOffspringEnergy(mate));
+    public void reproduce(Animal mate, int birthDate) {
+        Animal animal = new Animal(this.map, map.generateFreePositionNear(this.position), MapDirection.values()[geneGenerator.nextInt(8)], generateOffspringGenes(mate), generateOffspringEnergy(mate), birthDate);
         addOffspring(animal);
         mate.addOffspring(animal);
     }
@@ -175,15 +181,15 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
         observers.remove(observer);
     }
 
-    public long getNumberOfDescendantAfterNYears(Set<Animal> animals, int n, int begYears){
+    public long getNumberOfDescendantAfterNYears(Set<Animal> animals, int n, int begBirthDay) {
         long i = 0;
         for (Animal offspring : offsprings) {
-            if (begYears - offspring.getYears() > n)
+            if (offspring.getBirthDate() - begBirthDay > n)
                 continue;
             i += 1;
-            if(!animals.contains(offspring)){
+            if (!animals.contains(offspring)) {
                 animals.add(offspring);
-                i += offspring.getNumberOfDescendantAfterNYears(animals, n, begYears);
+                i += offspring.getNumberOfDescendantAfterNYears(animals, n, begBirthDay);
             }
         }
         return i;
@@ -206,7 +212,7 @@ public class Animal { //TODO dodaj id i sprawdzaj powtorki na globalnej liscie/m
     public int getNumberOfOffspringsAfterNYears(int n) {
         int z = 0;
         for (Animal offspring : this.offsprings)
-            if (this.years - offspring.getYears() <= n)
+            if (offspring.getBirthDate() - this.birthDate <= n)
                 z++;
         return z;
     }

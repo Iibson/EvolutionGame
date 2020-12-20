@@ -21,8 +21,10 @@ class SimulationEngine {
     private int year;
     private MapVisualiser mapVisualiser;
     private int saveTime;
+    private int id;
 
-    SimulationEngine(Integer width, Integer height, Integer jungleWidth, Integer jungleHeight, Integer startEnergy, Integer moveEnergy, Integer plantEnergy, int plantSpawnRatio, int numberOfStartingAnimals, int shift, int saveTime) {
+    SimulationEngine(Integer width, Integer height, Integer jungleWidth, Integer jungleHeight, Integer startEnergy, Integer moveEnergy, Integer plantEnergy, int plantSpawnRatio, int numberOfStartingAnimals, int shift, int saveTime, int id) {
+        this.id = id;
         Vector2d mapBounds = new Vector2d((width / 2), (height / 2));
         Vector2d jungleBounds = new Vector2d((jungleWidth / 2), (jungleHeight / 2));
         mapVisualiser = new MapVisualiser(mapBounds, jungleBounds, shift);
@@ -44,7 +46,7 @@ class SimulationEngine {
                 genes.add(i);
             for (int i = 8; i < 32; i++)
                 genes.add(random.nextInt(8));
-            new Animal(world, tempVector, MapDirection.values()[random.nextInt(8)], genes, startEnergy);
+            new Animal(world, tempVector, MapDirection.values()[random.nextInt(8)], genes, startEnergy, 0);
         }
         try {
             File file = new File("simulation.txt");
@@ -69,7 +71,8 @@ class SimulationEngine {
     }
 
     String getInfo() {
-        return " Years: " + this.year +
+        return "Simulation " + this.id +
+                "\n Years: " + this.year +
                 ",\n Animals: " + this.world.getCurrentNumberOfAnimals() +
                 ",\n Plants: " + this.world.getCurrentNumberOfPlants() +
                 ",\n Average Energy: " + (int) this.world.getAverageEnergy() +
@@ -81,7 +84,7 @@ class SimulationEngine {
     }
 
     String getInfoAboutChosenAnimal(int n) {
-        return this.mapVisualiser.getInfoAboutChosenAnimal(n, this.year);
+        return "Simulation " + this.id + this.mapVisualiser.getInfoAboutChosenAnimal(n, this.year);
     }
 
     private void writeToFileInfo() {

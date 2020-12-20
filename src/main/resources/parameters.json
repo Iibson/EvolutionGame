@@ -4,8 +4,8 @@
   "jungleHeight" : 50,
   "jungleWidth" : 50,
   "startingAnimals" : 100,
-  "plantSpawnRatio" : 10,
+  "plantSpawnRatio" : 5,
   "plantEnergy" : 15,
-  "startEnergy" : 100,
+  "startEnergy" : 50,
   "moveEnergy" : 1
 }
