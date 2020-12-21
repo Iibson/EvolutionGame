@@ -12,8 +12,8 @@ import java.util.*;
 
 public class MapVisualiser implements IElementObserver {
 
-    private Map<Vector2d, Rectangle> mapElements;
-    private Vector2d jungleBounds;
+    private final Map<Vector2d, Rectangle> mapElements;
+    private final Vector2d jungleBounds;
     private IWorldMap map;
     private Rectangle currentlyFollowed;
     private Animal chosenAnimal;

@@ -1,10 +1,40 @@
 Simulation 1
  Years: 0,
- Animals: 10,
+ Animals: 100,
  Plants: 0,
- Average Energy: 20,
+ Average Energy: 50,
  Average Life Span: 0,
  Average Children: 0
- Current Dominant Genes: [0, 0, 0, 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 7, 7, 7, 7, 7]
- Dominant Genes: [0, 0, 0, 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 7, 7, 7, 7, 7]
+ Current Dominant Genes: [0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7]
+
+Simulation 2
+ Years: 0,
+ Animals: 100,
+ Plants: 0,
+ Average Energy: 50,
+ Average Life Span: 0,
+ Average Children: 0
+ Current Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7]
+
+Simulation 1
+ Years: 1000,
+ Animals: 122,
+ Plants: 3637,
+ Average Energy: 297,
+ Average Life Span: 48,
+ Average Children: 3
+ Current Dominant Genes: [0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7, 7, 7]
+
+Simulation 2
+ Years: 1000,
+ Animals: 100,
+ Plants: 4281,
+ Average Energy: 396,
+ Average Life Span: 51,
+ Average Children: 3
+ Current Dominant Genes: [0, 0, 0, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7]
+ Dominant Genes: [0, 0, 0, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7]
 

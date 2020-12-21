@@ -17,11 +17,11 @@ import java.util.*;
 
 class SimulationEngine {
 
-    private IWorldMap world;
+    private final IWorldMap world;
     private int year;
-    private MapVisualiser mapVisualiser;
+    private final MapVisualiser mapVisualiser;
     private int saveTime;
-    private int id;
+    private final int id;
 
     SimulationEngine(Integer width, Integer height, Integer jungleWidth, Integer jungleHeight, Integer startEnergy, Integer moveEnergy, Integer plantEnergy, int plantSpawnRatio, int numberOfStartingAnimals, int shift, int saveTime, int id) {
         this.id = id;

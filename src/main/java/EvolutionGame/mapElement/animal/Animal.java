@@ -16,9 +16,9 @@ public class Animal {
     private final Random geneGenerator = new Random();
     private Integer energy;
     private int years = 0;
-    private List<Animal> offsprings = new ArrayList<>();
-    private long id;
-    private int birthDate;
+    private final List<Animal> offsprings = new ArrayList<>();
+    private final long id;
+    private final int birthDate;
 
     public Animal(IWorldMap map, Vector2d position, MapDirection mapDirection, List<Integer> genes, Integer energy, int birthDate) {
         this.map = map;

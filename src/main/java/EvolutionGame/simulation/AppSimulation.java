@@ -38,29 +38,29 @@ public class AppSimulation implements EventHandler {
     public AppSimulation(ISimulationObserver observer) {
 
         this.observer = observer;
-        stopEngine1.setOnAction(this);
-        stopEngine1.setVisible(false);
-        stopEngine1.setText("pause 1st simulation");
-        stopEngine1.setLayoutX(10);
-        stopEngine1.setLayoutY(740);
-        stopEngine2.setOnAction(this);
-        stopEngine2.setVisible(false);
-        stopEngine2.setText("pause 2nd simulation");
-        stopEngine2.setLayoutX(10);
-        stopEngine2.setLayoutY(780);
-        dominantGenes.setOnAction(this);
-        dominantGenes.setVisible(false);
-        dominantGenes.setText("show current dominant genes");
-        dominantGenes.setLayoutX(10);
-        dominantGenes.setLayoutY(820);
+        this.stopEngine1.setOnAction(this);
+        this.stopEngine1.setVisible(false);
+        this.stopEngine1.setText("pause 1st simulation");
+        this.stopEngine1.setLayoutX(10);
+        this.stopEngine1.setLayoutY(740);
+        this.stopEngine2.setOnAction(this);
+        this.stopEngine2.setVisible(false);
+        this.stopEngine2.setText("pause 2nd simulation");
+        this.stopEngine2.setLayoutX(10);
+        this.stopEngine2.setLayoutY(780);
+        this.dominantGenes.setOnAction(this);
+        this.dominantGenes.setVisible(false);
+        this.dominantGenes.setText("show current dominant genes");
+        this.dominantGenes.setLayoutX(10);
+        this.dominantGenes.setLayoutY(820);
 
         this.isRunning = false;
 
-        startSimulation.setOnAction(this);
-        startSimulation.setVisible(true);
-        startSimulation.setText("startSimulation");
-        startSimulation.setLayoutX(1300);
-        startSimulation.setLayoutY(570);
+        this.startSimulation.setOnAction(this);
+        this.startSimulation.setVisible(true);
+        this.startSimulation.setText("startSimulation");
+        this.startSimulation.setLayoutX(1300);
+        this.startSimulation.setLayoutY(570);
 
         this.engine1Info.setLayoutX(10);
         this.engine1Info.setLayoutY(550);
