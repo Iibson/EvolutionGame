@@ -181,15 +181,15 @@ public class Animal {
         observers.remove(observer);
     }
 
-    public long getNumberOfDescendantAfterNYears(Set<Animal> animals, int n, int begBirthDay) {
+    public long getNumberOfDescendantAfterNYears(Set<Animal> animals, int n, int year) {
         long i = 0;
         for (Animal offspring : offsprings) {
-            if (offspring.getBirthDate() - begBirthDay > n)
+            if (offspring.getBirthDate() - year > n || offspring.getBirthDate() < year)
                 continue;
             i += 1;
             if (!animals.contains(offspring)) {
                 animals.add(offspring);
-                i += offspring.getNumberOfDescendantAfterNYears(animals, n, begBirthDay);
+                i += offspring.getNumberOfDescendantAfterNYears(animals, n, year);
             }
         }
         return i;
@@ -209,10 +209,10 @@ public class Animal {
         return position.subtract(this.mapDirection.toUnitVector()).opposite();
     }
 
-    public int getNumberOfOffspringsAfterNYears(int n) {
+    public int getNumberOfOffspringsAfterNYears(int n, int year) {
         int z = 0;
         for (Animal offspring : this.offsprings)
-            if (offspring.getBirthDate() - this.birthDate <= n)
+            if (offspring.getBirthDate() - year <= n && offspring.getBirthDate() >= year)
                 z++;
         return z;
     }
