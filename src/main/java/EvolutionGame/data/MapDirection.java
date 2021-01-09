@@ -79,7 +79,7 @@ public enum MapDirection {
     public Vector2d toUnitVector() {
         switch (this) {
             case SOUTH_EAST:
-                return new Vector2d(1, -1);
+                return new Vector2d(1, -1); // nowy wektor co wywołanie
             case SOUTH_WEST:
                 return new Vector2d(-1, -1);
             case NORTH_EAST:

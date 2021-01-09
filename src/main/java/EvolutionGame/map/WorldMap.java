@@ -36,7 +36,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
     private Integer currentDominantGenesNumberThroughAllYears = 0;
     private int year = 0;
 
-    public WorldMap(Vector2d mapBounds, Vector2d jungleBounds, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio, Integer moveEnergy, IElementObserver visualiser) {
+    public WorldMap(Vector2d mapBounds, Vector2d jungleBounds, Integer plantEnergy, Integer animalStartingEnergy, int plantsSpawnRatio, Integer moveEnergy, IElementObserver visualiser) {  // czy to jest właściwy typ dla visualisera?
         this.moveEnergy = moveEnergy;
         this.mapBounds = mapBounds;
         this.plantEnergy = plantEnergy;
@@ -329,7 +329,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
         return this.numberOfAllOffsprings / this.currentNumberOfAnimals;
     }
 
-    public List<Integer> getCurrentDominantGenesThroughAllYears() {
+    public List<Integer> getCurrentDominantGenesThroughAllYears() { // to current, czy through all years?
         return Collections.unmodifiableList(this.currentDominantGenesThroughAllYears);
     }
 
@@ -339,7 +339,7 @@ public class WorldMap implements IWorldMap, IElementObserver {
             for (int j = 0; j < 3; j++) {
                 if (i == position.x && j == position.y)
                     continue;
-                nearPositions.add(new Vector2d(i, j));
+                nearPositions.add(new Vector2d(i, j));  // nie łatwiej wylosować kierunek?
             }
         }
         Collections.shuffle(nearPositions);

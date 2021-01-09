@@ -1,4 +1,4 @@
-package EvolutionGame;
+package EvolutionGame;  // pakiety raczej małymi literami i w postaci odwrotnej nazwy domenowej
 
 import EvolutionGame.simulation.AppSimulation;
 import EvolutionGame.simulation.ISimulationObserver;

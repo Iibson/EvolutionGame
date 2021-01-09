@@ -5,7 +5,7 @@ import EvolutionGame.mapElement.animal.Animal;
 import java.util.List;
 import java.util.Set;
 
-public interface IWorldMap {
+public interface IWorldMap {    // rozbudowany ten interfejs
 
     Integer getAnimalStartingEnergy();
 

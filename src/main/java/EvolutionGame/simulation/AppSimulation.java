@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-public class AppSimulation implements EventHandler {
+public class AppSimulation implements EventHandler {    // czy GUI pasuje do pakietu "simulation"?
     private SimulationEngine engine1;
     private SimulationEngine engine2;
     private boolean engine1Running = true;
@@ -174,7 +174,7 @@ public class AppSimulation implements EventHandler {
 
         );
         engine2 = new SimulationEngine(
-                jsonObject.get("width").getAsInt(),
+                jsonObject.get("width").getAsInt(), // DRY
                 jsonObject.get("height").getAsInt(),
                 jsonObject.get("jungleWidth").getAsInt(),
                 jsonObject.get("jungleHeight").getAsInt(),
